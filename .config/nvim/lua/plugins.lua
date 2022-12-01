@@ -1,0 +1,44 @@
+local status, packer = pcall(require, "packer")
+if (not status) then
+  print("Packer is not installed")
+  return
+end
+
+vim.cmd [[packadd packer.nvim]]
+
+packer.startup(function(use)
+  use 'wbthomason/packer.nvim'
+  use 'nvim-lua/plenary.nvim' -- Common utilities
+  use 'marko-cerovac/material.nvim'
+  use 'nvim-lualine/lualine.nvim' -- Statusline
+  use 'fedepujol/move.nvim'
+  use 'jose-elias-alvarez/null-ls.nvim' -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
+  use 'hrsh7th/cmp-buffer' -- nvim-cmp source for buffer words
+  use 'hrsh7th/nvim-cmp' -- Completion
+  use {
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup()
+    end
+  }
+  --LSP
+  use { "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim", }
+  use 'neovim/nvim-lspconfig' -- LSP
+  use 'hrsh7th/cmp-nvim-lsp' -- nvim-cmp source for neovim's built-in LSP
+  use 'onsails/lspkind-nvim'
+  -- use 'glepnir/lspsaga.nvim' -- LSP UIs
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
+  }
+  use 'L3MON4D3/LuaSnip'
+  use 'kyazdani42/nvim-web-devicons' -- File icon
+  use 'nvim-telescope/telescope.nvim'
+  use 'nvim-telescope/telescope-file-browser.nvim'
+  use 'windwp/nvim-autopairs'
+  use 'windwp/nvim-ts-autotag'
+  use 'norcalli/nvim-colorizer.lua'
+  use 'akinsho/nvim-bufferline.lua'
+  use 'github/copilot.vim'
+end)
