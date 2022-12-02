@@ -15,18 +15,6 @@ keymap.set('n', '<C-s>', ':w<CR>')
 keymap.set('i', '<C-s>', '<Esc>:w<CR>')
 keymap.set('v', '<C-s>', '<Esc>:w<CR>gv')
 
--- Normal-mode commands
-keymap.set('n', '<A-j>', ':MoveLine(1)<CR>', opts)
-keymap.set('n', '<A-k>', ':MoveLine(-1)<CR>', opts)
-keymap.set('n', '<A-h>', ':MoveHChar(-1)<CR>', opts)
-keymap.set('n', '<A-l>', ':MoveHChar(1)<CR>', opts)
-
--- Visual-mode commands
-keymap.set('v', '<A-j>', ':MoveBlock(1)<CR>', opts)
-keymap.set('v', '<A-k>', ':MoveBlock(-1)<CR>', opts)
-keymap.set('v', '<A-h>', ':MoveHBlock(-1)<CR>', opts)
-keymap.set('v', '<A-l>', ':MoveHBlock(1)<CR>', opts)
-
 -- Disable arrow keys
 keymap.set('n', '<Up>', '<Nop>')
 keymap.set('n', '<Down>', '<Nop>')
@@ -54,3 +42,21 @@ keymap.set("n", "<leader>to", ":tabnew<CR>") -- open new tab
 keymap.set("n", "<leader>tx", ":tabclose<CR>") -- close current tab
 keymap.set("n", "<leader>tn", ":tabn<CR>") --  go to next tab
 keymap.set("n", "<leader>tp", ":tabp<CR>") --  go to previous tab
+
+
+
+-- Plugins
+-- Normal-mode commands
+keymap.set('n', '<A-j>', ':MoveLine(1)<CR>', opts)
+keymap.set('n', '<A-k>', ':MoveLine(-1)<CR>', opts)
+keymap.set('n', '<A-h>', ':MoveHChar(-1)<CR>', opts)
+keymap.set('n', '<A-l>', ':MoveHChar(1)<CR>', opts)
+
+-- Visual-mode commands
+keymap.set('v', '<A-j>', ':MoveBlock(1)<CR>', opts)
+keymap.set('v', '<A-k>', ':MoveBlock(-1)<CR>', opts)
+keymap.set('v', '<A-h>', ':MoveHBlock(-1)<CR>', opts)
+keymap.set('v', '<A-l>', ':MoveHBlock(1)<CR>', opts)
+
+-- restart lsp server
+keymap.set("n", "<leader>rs", ":LspRestart<CR>") -- mapping to restart lsp if necessary
