@@ -1,8 +1,7 @@
-require('plugins')
-require('keymap')
-require('highlights')
-require('base')
+require("plugins")
+require("keymap")
+require("base")
 
 if is_win then
-  require('windows')
+	require("windows")
 end
