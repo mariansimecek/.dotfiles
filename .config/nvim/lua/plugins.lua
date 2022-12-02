@@ -33,14 +33,14 @@ packer.startup(function(use)
 	use("akinsho/nvim-bufferline.lua")
 	use("folke/which-key.nvim")
 	use({
-		"folke/persistence.nvim",
-		event = "BufReadPre", -- this will only start session saving when an actual file was opened
-		module = "persistence",
+		"rmagatti/auto-session",
 		config = function()
-			require("persistence").setup()
+			require("auto-session").setup({
+				log_level = "error",
+				auto_session_suppress_dirs = { "~/", "/home/mariansimecek/dev/", "~/home/mariansimecek/", "/" },
+			})
 		end,
 	})
-
 	-- Telescope
 	use("nvim-telescope/telescope.nvim")
 	use("nvim-telescope/telescope-file-browser.nvim")
