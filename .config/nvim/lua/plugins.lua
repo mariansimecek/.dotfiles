@@ -19,15 +19,27 @@ packer.startup(function(use)
 
 	-- Controls & behavior
 	use("fedepujol/move.nvim")
+	use("JoosepAlviste/nvim-ts-context-commentstring")
 	use({
 		"numToStr/Comment.nvim",
 		config = function()
-			require("Comment").setup()
+			require("Comment").setup({
+				pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+			})
 		end,
 	})
 	use("tpope/vim-surround") -- add, delete, change surroundings (it's awesome)
 	use("inkarkat/vim-ReplaceWithRegister") -- replace with register contents using motion (gr + motion)
 	use("akinsho/nvim-bufferline.lua")
+	use("folke/which-key.nvim")
+	use({
+		"folke/persistence.nvim",
+		event = "BufReadPre", -- this will only start session saving when an actual file was opened
+		module = "persistence",
+		config = function()
+			require("persistence").setup()
+		end,
+	})
 
 	-- Telescope
 	use("nvim-telescope/telescope.nvim")
