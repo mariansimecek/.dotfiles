@@ -20,6 +20,7 @@ ts.setup({
 		"css",
 		"html",
 		"lua",
+		"prisma",
 	},
 	autotag = {
 		enable = true,
