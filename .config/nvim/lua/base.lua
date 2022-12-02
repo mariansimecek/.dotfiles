@@ -1,6 +1,5 @@
 vim.cmd("autocmd!")
 local opt = vim.opt
-local g = vim.g
 local wo = vim.wo
 
 -- encoding
@@ -53,7 +52,6 @@ opt.laststatus = 2
 opt.scrolloff = 10
 opt.backspace = { 'start', 'eol', 'indent' }
 
-g.mapleader = ' '
 
 -- Turn off paste mode when leaving insert
 vim.api.nvim_create_autocmd("InsertLeave", {
