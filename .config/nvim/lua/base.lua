@@ -30,6 +30,9 @@ vim.opt.background = "dark"
 -- vim.opt.winblend = 0
 -- vim.opt.wildoptions = 'pum'
 -- vim.opt.pumblend = 5
+
+-- cursor
+vim.cmd("set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50")
 -- Undercurl
 vim.cmd([[let &t_Cs = "\e[4:3m"]])
 vim.cmd([[let &t_Ce = "\e[4:0m"]])
