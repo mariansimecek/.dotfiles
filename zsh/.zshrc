@@ -114,10 +114,14 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 # PATHs
 export PATH="$PATH:/root/scripts"
-
+export PATH=$PATH:/usr/local/go/bin
 # Aliases
 alias vim=nvim
 alias dev="cd /home/mariansimecek/dev"
 alias devWin="cd /mnt/c/dev/"
 alias ide="/root/scripts/open-dev-tmux"
 
+
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)

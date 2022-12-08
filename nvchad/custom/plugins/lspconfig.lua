@@ -2,7 +2,7 @@ local on_attach = require("plugins.configs.lspconfig").on_attach
 local capabilities = require("plugins.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
-local servers = { "html", "cssls", "tailwindcss"}
+local servers = { "html", "cssls", "tailwindcss","angularls", "gopls"}
 
 local typescript_setup, typescript = pcall(require, "typescript")
 if not typescript_setup then
