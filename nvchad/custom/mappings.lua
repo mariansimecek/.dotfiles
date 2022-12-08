@@ -6,8 +6,8 @@ M.moveLine = {
     ["<A-k>"] = {"<cmd> MoveLine(-1)<CR>", "Move line up"},
   },
   v = {
-    ["<A-j>"] = {"<cmd> MoveLine(1)<CR>", "Move line down"},
-    ["<A-k>"] = {"<cmd> MoveLine(-1)<CR>", "Move line up"},
+    ["<A-j>"] = {"<cmd> MoveBlock(1)<CR>", "Move line down"},
+    ["<A-k>"] = {"<cmd> MoveBlock(-1)<CR>", "Move line up"},
   }
 }
 return M

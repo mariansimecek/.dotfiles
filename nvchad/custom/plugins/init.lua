@@ -6,13 +6,24 @@ return {
 		end,
 	},
 
+	["windwp/nvim-ts-autotag"] = {
+		after = "nvim-treesitter",
+		config = function()
+			local present, autotag = pcall(require, "nvim-ts-autotag")
+
+			if present then
+				autotag.setup()
+			end
+		end,
+	},
+	["windwp/nvim-autopairs"] = {},
+
 	["jose-elias-alvarez/null-ls.nvim"] = {
 		after = "nvim-lspconfig",
 		config = function()
 			require("custom.plugins.null-ls")
 		end,
 	},
-
 	["jose-elias-alvarez/typescript.nvim"] = {},
 
 	["github/copilot.vim"] = {},
@@ -34,5 +45,6 @@ return {
 		end,
 	},
 
+	["tpope/vim-surround"] = {},
 	["fedepujol/move.nvim"] = {},
 }
