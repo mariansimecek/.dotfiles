@@ -6,6 +6,29 @@ return {
 		end,
 	},
 
+	["nvim-telescope/telescope-ui-select.nvim"] = {
+		after = "nvim-lspconfig",
+		config = function()
+			require("telescope").load_extension("ui-select")
+		end,
+	},
+
+	["nvim-telescope/telescope.nvim"] = {
+		module = "telescope",
+		override_options = function()
+			return {
+				extensions = {
+					["ui-select"] = {
+						require("telescope.themes").get_dropdown({
+							-- even more opts
+						}),
+					},
+				},
+				extensions_list = { "themes", "terms", "ui-select" },
+			}
+		end,
+	},
+
 	["windwp/nvim-ts-autotag"] = {
 		after = "nvim-treesitter",
 		config = function()
