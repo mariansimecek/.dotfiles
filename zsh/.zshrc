@@ -74,8 +74,9 @@ ZSH_THEME="hyperzsh" # set by `omz`
 plugins=(git tmux)
 
 source $ZSH/oh-my-zsh.sh
-source $ZSH_CUSTOM/colors/lscolors.sh
-
+# source $ZSH_CUSTOM/colors/lscolors.sh
+export LS_COLORS="$(vivid generate molokai)"
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -120,7 +121,7 @@ alias vim=nvim
 alias dev="cd /home/mariansimecek/dev"
 alias devWin="cd /mnt/c/dev/"
 alias ide="/root/scripts/open-dev-tmux"
-
+alias gs="git status"
 
 
 # Load Angular CLI autocompletion.
