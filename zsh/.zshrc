@@ -122,7 +122,7 @@ alias dev="cd /home/mariansimecek/dev"
 alias devWin="cd /mnt/c/dev/"
 alias ide="/root/scripts/open-dev-tmux"
 alias gs="git status"
-alias dotfiles = "vim ~/.dotfiles/"
+alias dotfiles="cd ~/.dotfiles"
 
 # Load Angular CLI autocompletion.
 source <(ng completion script)
