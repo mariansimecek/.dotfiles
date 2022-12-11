@@ -24,8 +24,8 @@ M.lspconfig = {
 	},
 }
 M.telescope = {
-  n = {
-    ["<leader>gs"] = { "<cmd> Telescope git_status <CR>", "git status" },
-  }
+	n = {
+		["<leader>gs"] = { "<cmd> Telescope git_status <CR>", "git status" },
+	},
 }
 return M

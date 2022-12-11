@@ -52,9 +52,6 @@ return {
 	["github/copilot.vim"] = {},
 
 	-- Override plugin definition options
-	["goolord/alpha-nvim"] = {
-		disable = false,
-	},
 
 	["folke/which-key.nvim"] = {
 		disable = false,
