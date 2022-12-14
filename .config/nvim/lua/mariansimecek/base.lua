@@ -1,4 +1,8 @@
 vim.cmd("autocmd!")
+
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 local opt = vim.opt
 local wo = vim.wo
 
@@ -28,7 +32,7 @@ opt.signcolumn = "yes"
 opt.title = true
 vim.opt.background = "dark"
 -- vim.opt.winblend = 0
--- vim.opt.wildoptions = 'pum'
+-- vim.opt.wildoptions = 'pum
 -- vim.opt.pumblend = 5
 
 -- cursor

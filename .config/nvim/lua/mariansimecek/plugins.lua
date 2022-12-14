@@ -9,11 +9,13 @@ vim.cmd([[packadd packer.nvim]])
 packer.startup(function(use)
 	use("wbthomason/packer.nvim")
 	use("nvim-lua/plenary.nvim") -- Common utilities
+  use { "zbirenbaum/copilot.lua" }
 	-- git integration
-	use("lewis6991/gitsigns.nvim") -- show line modifications on left hand side  use 'norcalli/nvim-colorizer.lua'
-
+	use("lewis6991/gitsigns.nvim") -- show line modifications on left hand side  
+  -- use 'norcalli/nvim-colorizer.lua'
+use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 	-- Appearance
-	use("marko-cerovac/material.nvim") -- Theme
+	use({ "nyoom-engineering/oxocarbon.nvim" })
 	use("nvim-lualine/lualine.nvim") -- Statusline
 	use("kyazdani42/nvim-web-devicons") -- File icon
 
@@ -29,7 +31,7 @@ packer.startup(function(use)
 		end,
 	})
 	use("tpope/vim-surround") -- add, delete, change surroundings (it's awesome)
-	use("akinsho/nvim-bufferline.lua")
+
 	use("folke/which-key.nvim")
 	use({
 		"rmagatti/auto-session",
@@ -42,8 +44,13 @@ packer.startup(function(use)
 	})
 	-- Telescope
 	use("nvim-telescope/telescope.nvim")
-	use("nvim-telescope/telescope-file-browser.nvim")
-
+	use({
+		"nvim-tree/nvim-tree.lua",
+		requires = {
+			"nvim-tree/nvim-web-devicons", -- optional, for file icons
+		},
+		tag = "nightly", -- optional, updated every week. (see issue #1193)
+	})
 	-- Autocomplete
 	use("hrsh7th/nvim-cmp") -- Completion
 	use("hrsh7th/cmp-buffer") -- nvim-cmp source for buffer words
@@ -52,17 +59,16 @@ packer.startup(function(use)
 	-- Snippets
 	use("L3MON4D3/LuaSnip") -- snippet engine
 	use("saadparwaiz1/cmp_luasnip") -- for autocompletion
-
 	-- managing & installing lsp servers, linters & formatters
 	use("williamboman/mason.nvim") -- in charge of managing lsp servers, linters & formatters
 	use("williamboman/mason-lspconfig.nvim") -- bridges gap b/w mason & lspconfig
 
 	--LSP
+  use("onsails/lspkind-nvim")
+  use("jose-elias-alvarez/typescript.nvim") -- additional functionality for typescript server (e.g. rename file & update imports)
 	use("neovim/nvim-lspconfig") -- LSP
 	use("hrsh7th/cmp-nvim-lsp") -- nvim-cmp source for neovim's built-in LSP
 	use({ "glepnir/lspsaga.nvim", branch = "main" }) -- enhanced lsp uis
-	use("jose-elias-alvarez/typescript.nvim") -- additional functionality for typescript server (e.g. rename file & update imports)
-	use("onsails/lspkind-nvim")
 
 	-- formatting & linting
 	use("jose-elias-alvarez/null-ls.nvim") -- configure formatters & linters
@@ -77,10 +83,19 @@ packer.startup(function(use)
 		end,
 	})
 
+  use {"akinsho/toggleterm.nvim", tag = '*', config = function()
+  require("toggleterm").setup({  direction = 'float',
+  open_mapping = [[<c-\>]],
+  on_open = function(term)
+    vim.api.nvim_buf_set_keymap(term.bufnr, "t", "<c-\\>", "exit<CR>", { noremap = true, silent = true })
+  end,
+  close_on_exit = true,})
+end}
 	-- auto closing
-	use("windwp/nvim-autopairs") -- autoclose parens, brackets, quotes, etc...
-	use({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" }) -- autoclose tags
+	-- use("windwp/nvim-autopairs") -- autoclose parens, brackets, quotes, etc...
+	-- use({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" }) -- autoclose tags
 
 	-- Copilot
-	use("github/copilot.vim")
+
+  -- random function that generate numbers 
 end)

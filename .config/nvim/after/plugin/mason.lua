@@ -24,7 +24,6 @@ mason_lspconfig.setup({
   ensure_installed = {
     "tsserver",
     "html",
-    "tailwindcss",
     "sumneko_lua",
   },
   -- auto-install configured servers (with lspconfig)
