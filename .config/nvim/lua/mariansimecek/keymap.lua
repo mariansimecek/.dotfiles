@@ -74,5 +74,6 @@ vim.keymap.set("t", "<A-h>", function () require('nvterm.terminal').toggle('hori
 vim.keymap.set("n", "<leader>fm", ":lua vim.lsp.buf.format()<CR>")
 vim.keymap.set("v", "<leader>fm", ":lua vim.lsp.buf.format()<CR>")
 
-
-
+-- Search and replace
+vim.keymap.set("n", "<leader>rs", ":%s///gc<Left><Left><Left><Left>")
+vim.keymap.set("v", "<leader>rs", ":s///gc<Left><Left><Left><Left>")

@@ -6,6 +6,7 @@ end
 
 vim.cmd([[packadd packer.nvim]])
 
+-- TODO: add nvim-spectre
 packer.startup(function(use)
   use("nvim-lua/plenary.nvim") -- Common utilities
   -- git integration
@@ -92,25 +93,4 @@ packer.startup(function(use)
   -- auto closing
   -- use("windwp/nvim-autopairs") -- autoclose parens, brackets, quotes, etc...
   -- use({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" }) -- autoclose tags
-
-  use {
-  "cshuaimin/ssr.nvim",
-  module = "ssr",
-  -- Calling setup is optional.
-  config = function()
-    require("ssr").setup {
-      min_width = 50,
-      min_height = 5,
-      max_width = 120,
-      max_height = 25,
-      keymaps = {
-        close = "q",
-        next_match = "n",
-        prev_match = "N",
-        replace_confirm = "<cr>",
-        replace_all = "<leader><cr>",
-      },
-    }
-  end
-}
 end)
