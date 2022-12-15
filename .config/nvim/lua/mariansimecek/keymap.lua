@@ -67,15 +67,12 @@ vim.keymap.set("n", "<leader>fh", ":Telescope help_tags<CR>")
 vim.keymap.set("n", "<leader>sk", ":Telescope keymaps<CR>")
 
 
--- Toggle term 
-vim.keymap.set("n", "<A-\\>", ":ToggleTerm direction=horizontal<CR>")
--- function _G.set_terminal_keymaps()
---   local opts_term = {buffer = 0}
---   vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts_term)
---   vim.keymap.set('t', 'jk', [[<C-\><C-n>]], opts_term)
---   vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts_term)
---   vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], opts_term)
---   vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]], opts_term)
---   vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]], opts_term)
--- end
---
+-- Toggle term
+vim.keymap.set("n", "<A-h>", function () require('nvterm.terminal').toggle('horizontal') end)
+vim.keymap.set("t", "<A-h>", function () require('nvterm.terminal').toggle('horizontal') end)
+-- Format
+vim.keymap.set("n", "<leader>fm", ":lua vim.lsp.buf.format()<CR>")
+vim.keymap.set("v", "<leader>fm", ":lua vim.lsp.buf.format()<CR>")
+
+
+

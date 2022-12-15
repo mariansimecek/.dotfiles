@@ -82,7 +82,17 @@ lspconfig["cssls"].setup({
 -- lspconfig["tailwindcss"].setup({
 --   capabilities = capabilities,
 --   on_attach = on_attach,
+local languageServerPath = "/root/.nvm/versions/node/v16.18.0/lib"
+local cmd = { "node", languageServerPath .. "/node_modules/@angular/language-server/index.js", "--stdio",
+  "--tsProbeLocations", languageServerPath, "--ngProbeLocations", languageServerPath }
 
+lspconfig["angularls"].setup({
+  cmd = cmd,
+  on_new_config = function(new_config, new_root_dir)
+    new_config.cmd = cmd
+  end,
+
+})
 
 
 -- configure lua server (with special settings)
@@ -105,4 +115,3 @@ lspconfig["sumneko_lua"].setup({
     },
   },
 })
-

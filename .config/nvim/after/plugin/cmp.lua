@@ -1,4 +1,4 @@
-vim.api.nvim_set_hl(0, "CmpItemKindCopilot", {fg ="#6CC644"})
+vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
 local present, cmp = pcall(require, "cmp")
 if not present then
   return
@@ -41,8 +41,8 @@ local options = {
     end,
   },
   formatting = {
-     format = lspkind.cmp_format({
-            mode = "text_symbol", -- show only symbol annotations
+    format = lspkind.cmp_format({
+      mode = "text_symbol", -- show only symbol annotations
       maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
       -- The function below will be called before any actual modifications from lspkind
       -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
@@ -62,7 +62,7 @@ local options = {
         })[entry.source.name]
         return vim_item
       end,
-		}),
+    }),
   },
   mapping = {
     ["<C-p>"] = cmp.mapping.select_prev_item(),
@@ -75,6 +75,19 @@ local options = {
       behavior = cmp.ConfirmBehavior.Replace,
       select = false,
     },
+    ["<C-j>"] = cmp.mapping(function(fallback)
+      cmp.mapping.abort()
+      local copilot_keys = vim.fn["copilot#Accept"]()
+      if copilot_keys ~= "" then
+        vim.api.nvim_feedkeys(copilot_keys, "i", true)
+      else
+        fallback()
+      end
+    end, {
+      "i",
+      "s",
+    }),
+
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()

@@ -66,8 +66,8 @@ opt.backspace = { "start", "eol", "indent" }
 
 -- Turn off paste mode when leaving insert
 vim.api.nvim_create_autocmd("InsertLeave", {
-	pattern = "*",
-	command = "set nopaste",
+  pattern = "*",
+  command = "set nopaste",
 })
 
 -- Add asterisks in block comments
@@ -77,3 +77,7 @@ opt.formatoptions:append({ "r" })
 opt.clipboard:append("unnamedplus") -- use system clipboard as default register
 
 opt.iskeyword:append("-") -- consider string-string as whole word
+
+vim.g.copilot_no_tab_map = true
+vim.g.copilot_assume_mapped = true
+vim.g.copilot_tab_fallback = ""
