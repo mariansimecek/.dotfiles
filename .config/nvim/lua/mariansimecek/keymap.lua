@@ -70,6 +70,10 @@ vim.keymap.set("n", "<leader>sk", ":Telescope keymaps<CR>")
 -- Toggle term
 vim.keymap.set("n", "<A-h>", function () require('nvterm.terminal').toggle('horizontal') end)
 vim.keymap.set("t", "<A-h>", function () require('nvterm.terminal').toggle('horizontal') end)
+
+vim.keymap.set("n", "<A-f>", function () require('nvterm.terminal').toggle('float') end)
+vim.keymap.set("t", "<A-f>", function () require('nvterm.terminal').toggle('float') end)
+
 -- Format
 vim.keymap.set("n", "<leader>fm", ":lua vim.lsp.buf.format()<CR>")
 vim.keymap.set("v", "<leader>fm", ":lua vim.lsp.buf.format()<CR>")
