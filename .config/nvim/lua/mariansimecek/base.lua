@@ -41,7 +41,7 @@ vim.cmd([[let &t_Ce = "\e[4:0m"]])
 
 -- search
 vim.opt.ignorecase = true -- Case insensitive searching UNLESS /C or capital in search
-vim.opt.hlsearch = false
+vim.opt.hlsearch = true
 vim.opt.incsearch = true
 vim.opt.smartcase = true -- Don't ignore case with capitals
 vim.opt.path:append({ "**" }) -- Finding files - Search down into subfolders
