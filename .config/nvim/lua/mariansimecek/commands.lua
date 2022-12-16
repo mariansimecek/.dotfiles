@@ -5,9 +5,4 @@ local function openConfig()
   vim.cmd("cd " .. configPath)
 end
 
-local function cleanSwap ()
-  vim.cmd("silent! !rm -rf " .. vim.fn.stdpath("state") .. "/swap/*")
-end
-
 vim.api.nvim_create_user_command("Config", openConfig, {})
-vim.api.nvim_create_user_command("CleanSwap", cleanSwap, {})

@@ -54,8 +54,6 @@ vim.keymap.set("n", "<A-k>", ":MoveLine(-1)<CR>", opts)
 -- Visual-mode commands
 vim.keymap.set("v", "<A-j>", ":MoveBlock(1)<CR>", opts)
 vim.keymap.set("v", "<A-k>", ":MoveBlock(-1)<CR>", opts)
--- restart lsp server
-vim.keymap.set("n", "<leader>rs", ":LspRestart<CR>") -- mapping to restart lsp if necessary
 
 vim.keymap.set("n", "<C-n>", ":NvimTreeToggle<CR>")
 
