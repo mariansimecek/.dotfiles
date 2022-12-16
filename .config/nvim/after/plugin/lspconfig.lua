@@ -94,7 +94,17 @@ lspconfig["angularls"].setup({
 
 })
 
+local languageServerPath = vim.fn.stdpath("config").."/lua/languageserver"
+local cmd = {"ngserver", "--stdio", "--tsProbeLocations", languageServerPath , "--ngProbeLocations", languageServerPath}
 
+lspconfig.angularls.setup{
+    on_attach = on_attach,
+    capabilities = capabilities,
+    cmd = cmd,
+    on_new_config = function(new_config, new_root_dir)
+        new_config.cmd = cmd
+    end,
+}
 -- configure lua server (with special settings)
 lspconfig["sumneko_lua"].setup({
   capabilities = capabilities,

@@ -93,4 +93,8 @@ packer.startup(function(use)
   -- auto closing
   -- use("windwp/nvim-autopairs") -- autoclose parens, brackets, quotes, etc...
   -- use({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" }) -- autoclose tags
+  use {
+    "rambhosale/cmp-bootstrap.nvim",
+    after = "nvim-cmp",
+  }
 end)

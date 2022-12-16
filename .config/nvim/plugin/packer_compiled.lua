@@ -91,6 +91,14 @@ _G.packer_plugins = {
     path = "/root/.local/share/nvim/site/pack/packer/start/auto-session",
     url = "https://github.com/rmagatti/auto-session"
   },
+  ["cmp-bootstrap.nvim"] = {
+    after_files = { "/root/.local/share/nvim/site/pack/packer/opt/cmp-bootstrap.nvim/after/plugin/cmp_bootstrap.lua" },
+    load_after = {},
+    loaded = true,
+    needs_bufread = false,
+    path = "/root/.local/share/nvim/site/pack/packer/opt/cmp-bootstrap.nvim",
+    url = "https://github.com/rambhosale/cmp-bootstrap.nvim"
+  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/root/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -252,6 +260,11 @@ time([[Config for nvterm]], false)
 time([[Config for Comment.nvim]], true)
 try_loadstring("\27LJ\2\n \1\0\0\6\0\a\0\r6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\5\0006\3\0\0'\5\3\0B\3\2\0029\3\4\3B\3\1\2=\3\6\2B\0\2\1K\0\1\0\rpre_hook\1\0\0\20create_pre_hook7ts_context_commentstring.integrations.comment_nvim\nsetup\fComment\frequire\0", "config", "Comment.nvim")
 time([[Config for Comment.nvim]], false)
+-- Load plugins in order defined by `after`
+time([[Sequenced loading]], true)
+vim.cmd [[ packadd nvim-cmp ]]
+vim.cmd [[ packadd cmp-bootstrap.nvim ]]
+time([[Sequenced loading]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

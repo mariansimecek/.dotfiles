@@ -114,6 +114,7 @@ local options = {
     }),
   },
   sources = {
+    { name = 'cmp_bootstrap' },
     { name = "luasnip" },
     { name = "nvim_lsp" },
     -- { name = "buffer" },
