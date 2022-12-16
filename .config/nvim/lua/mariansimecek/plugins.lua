@@ -58,7 +58,13 @@ packer.startup(function(use)
     use('tpope/vim-fugitive')
 
     -- Snippets
-    use("L3MON4D3/LuaSnip") -- snippet engine
+    use("rafamadriz/friendly-snippets")
+    use({
+        'L3MON4D3/LuaSnip',
+        config = function()
+            require('luasnip.loaders.from_vscode').lazy_load()
+        end,
+    })
     use("saadparwaiz1/cmp_luasnip") -- for autocompletion
     -- managing & installing lsp servers, linters & formatters
     use("williamboman/mason.nvim") -- in charge of managing lsp servers, linters & formatters
