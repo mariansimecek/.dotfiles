@@ -70,8 +70,6 @@ vim.api.nvim_create_autocmd("InsertLeave", {
   command = "set nopaste",
 })
 
--- Add asterisks in block comments
-vim.opt.formatvim.options:append({ "r" })
 
 -- clipboard
 vim.opt.clipboard:append("unnamedplus") -- use system clipboard as default register

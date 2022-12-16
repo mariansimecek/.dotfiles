@@ -76,6 +76,11 @@ typescript.setup({
 lspconfig["cssls"].setup({
   capabilities = capabilities,
   on_attach = on_attach,
+
+
+
+
+
 })
 
 -- configure tailwindcss server
@@ -121,6 +126,11 @@ lspconfig["sumneko_lua"].setup({
           [vim.fn.stdpath("config") .. "/lua"] = true,
         },
       },
+
+
+
+
+
     },
   },
 })

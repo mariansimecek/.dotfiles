@@ -2,9 +2,7 @@
 vim.g.mapleader = " "
 local opts = { noremap = true, silent = true }
 
--- use jk to exit insert mode
-vim.keymap.set("i", "jk", "<ESC>")
-
+vim.keymap.set("n", "Q", "<Nop>", opts)
 -- reload config
 vim.keymap.set("n", "<leader>so", ":source %<CR>")
 -- clear search highlights
@@ -64,20 +62,12 @@ vim.keymap.set("n", "<leader>fo", ":Telescope oldfiles<CR>")
 vim.keymap.set("n", "<leader>fw", ":Telescope live_grep<CR>")
 vim.keymap.set("n", "<leader>fb", ":Telescope buffers<CR>")
 vim.keymap.set("n", "<leader>gc", ":Telescope git_commits<CR>")
-vim.keymap.set("n", "<leader>gs", ":Telescope git_commits<CR>")
 vim.keymap.set("n", "<leader>gi", ":Telescope lsp_implementations<CR>")
 vim.keymap.set("n", "<leader>gr", ":Telescope lsp_references<CR>")
 vim.keymap.set("n", "<leader>D", ":Telescope lsp_type_definitions<CR>")
 vim.keymap.set("n", "<leader>fh", ":Telescope help_tags<CR>")
 vim.keymap.set("n", "<leader>sk", ":Telescope keymaps<CR>")
 
-
--- Toggle term
-vim.keymap.set("n", "<A-h>", function () require('nvterm.terminal').toggle('horizontal') end)
-vim.keymap.set("t", "<A-h>", function () require('nvterm.terminal').toggle('horizontal') end)
-
-vim.keymap.set("n", "<A-f>", function () require('nvterm.terminal').toggle('float') end)
-vim.keymap.set("t", "<A-f>", function () require('nvterm.terminal').toggle('float') end)
 
 -- Format
 vim.keymap.set("n", "<leader>fm", ":lua vim.lsp.buf.format()<CR>")
@@ -88,3 +78,5 @@ vim.keymap.set("n", "<leader>rs", ":%s///gc<Left><Left><Left><Left>")
 vim.keymap.set("v", "<leader>rs", ":s///gc<Left><Left><Left><Left>")
 
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
+
+vim.keymap.set("n", "<leader>gs", vim.cmd.Git)

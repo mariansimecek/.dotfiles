@@ -82,12 +82,9 @@ packer.startup(function(use)
             ts_update()
         end,
     })
-    use {
-        "NvChad/nvterm",
-        config = function()
-            require("nvterm").setup()
-        end,
-    }
+    use { "akinsho/toggleterm.nvim", tag = '*', config = function()
+        require("toggleterm").setup()
+    end }
     -- auto closing
     -- use("windwp/nvim-autopairs") -- autoclose parens, brackets, quotes, etc...
     -- use({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" }) -- autoclose tags
