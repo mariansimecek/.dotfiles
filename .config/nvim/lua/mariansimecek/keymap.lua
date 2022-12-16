@@ -34,6 +34,13 @@ vim.keymap.set("i", "<Right>", "<Nop>")
 -- disable adding char to buffer
 vim.keymap.set("n", "x", '"_x')
 
+vim.keymap.set("n", "<leader>y", "\"+y")
+vim.keymap.set("v", "<leader>y", "\"+y")
+vim.keymap.set("n", "<leader>Y", "\"+Y")
+
+vim.keymap.set("n", "<leader>d", "\"_d")
+vim.keymap.set("v", "<leader>d", "\"_d")
+
 
 vim.keymap.set("n", "<C-h>", "<C-w>h")
 vim.keymap.set("n", "<C-l>", "<C-w>l")
@@ -81,3 +88,5 @@ vim.keymap.set("v", "<leader>fm", ":lua vim.lsp.buf.format()<CR>")
 -- Search and replace
 vim.keymap.set("n", "<leader>rs", ":%s///gc<Left><Left><Left><Left>")
 vim.keymap.set("v", "<leader>rs", ":s///gc<Left><Left><Left><Left>")
+
+vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)

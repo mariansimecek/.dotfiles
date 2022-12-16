@@ -3,33 +3,31 @@ vim.cmd("autocmd!")
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
-local opt = vim.opt
-local wo = vim.wo
-
 -- encoding
 vim.scriptencoding = "utf-8"
-opt.encoding = "utf-8"
-opt.fileencoding = "utf-8"
+vim.opt.encoding = "utf-8"
+vim.opt.fileencoding = "utf-8"
 
 -- line numebs
-wo.number = true
-wo.relativenumber = true
+vim.wo.number = true
+vim.wo.relativenumber = true
 
 -- tab & indent
-opt.autoindent = true
-opt.smartindent = true
-opt.smarttab = true
-opt.breakindent = true
-opt.shiftwidth = 2
-opt.tabstop = 2
-opt.expandtab = true
-opt.wrap = false -- No Wrap lines
+vim.opt.autoindent = true
+vim.opt.smartindent = true
+vim.opt.smarttab = true
+vim.opt.breakindent = true
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 8
+vim.opt.softtabstop = 0
+vim.opt.expandtab = true
+vim.opt.wrap = false -- No Wrap lines
 
 -- apparence
-opt.termguicolors = true
+vim.opt.termguicolors = true
 vim.opt.cursorline = true
-opt.signcolumn = "yes"
-opt.title = true
+vim.opt.signcolumn = "yes"
+vim.opt.title = true
 vim.opt.background = "dark"
 -- vim.opt.winblend = 0
 -- vim.opt.wildoptions = 'pum
@@ -42,27 +40,29 @@ vim.cmd([[let &t_Cs = "\e[4:3m"]])
 vim.cmd([[let &t_Ce = "\e[4:0m"]])
 
 -- search
-opt.ignorecase = true -- Case insensitive searching UNLESS /C or capital in search
-opt.hlsearch = true -- Highlight all matches on previous search pattern
-opt.smartcase = true -- Don't ignore case with capitals
-opt.path:append({ "**" }) -- Finding files - Search down into subfolders
-opt.wildignore:append({ "*/node_modules/*" })
+vim.opt.ignorecase = true -- Case insensitive searching UNLESS /C or capital in search
+vim.opt.hlsearch = false
+vim.opt.incsearch = true
+vim.opt.smartcase = true -- Don't ignore case with capitals
+vim.opt.path:append({ "**" }) -- Finding files - Search down into subfolders
+vim.opt.wildignore:append({ "*/node_modules/*" })
 
 -- backup & history
-opt.undofile = true
-opt.backup = false
-opt.backupskip = { "/tmp/*", "/private/tmp/*" }
+vim.opt.swapfile = false
+vim.opt.backup = false
+vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.opt.undofile = true
 
 -- command & status line
-opt.inccommand = "split"
-opt.showcmd = true
-opt.cmdheight = 1
-opt.shell = "zsh"
-opt.laststatus = 2
+vim.opt.inccommand = "split"
+vim.opt.showcmd = true
+vim.opt.cmdheight = 1
+vim.opt.shell = "zsh"
+vim.opt.laststatus = 2
 
 -- others
-opt.scrolloff = 10
-opt.backspace = { "start", "eol", "indent" }
+vim.opt.scrolloff = 10
+vim.opt.backspace = { "start", "eol", "indent" }
 
 -- Turn off paste mode when leaving insert
 vim.api.nvim_create_autocmd("InsertLeave", {
@@ -71,13 +71,15 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 })
 
 -- Add asterisks in block comments
-opt.formatoptions:append({ "r" })
+vim.opt.formatvim.options:append({ "r" })
 
 -- clipboard
-opt.clipboard:append("unnamedplus") -- use system clipboard as default register
+vim.opt.clipboard:append("unnamedplus") -- use system clipboard as default register
 
-opt.iskeyword:append("-") -- consider string-string as whole word
+vim.opt.iskeyword:append("-") -- consider string-string as whole word
 
 vim.g.copilot_no_tab_map = true
 vim.g.copilot_assume_mapped = true
 vim.g.copilot_tab_fallback = ""
+
+vim.opt.updatetime = 50
