@@ -80,3 +80,6 @@ vim.keymap.set("v", "<leader>rs", ":s///gc<Left><Left><Left><Left>")
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
 
 vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
+
+vim.keymap.set('n', 'cn', '*``cgn')
+vim.keymap.set('n', 'cN', '*``cgN')

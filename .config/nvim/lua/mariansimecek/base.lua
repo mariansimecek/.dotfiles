@@ -1,8 +1,19 @@
 vim.cmd("autocmd!")
 
+local ag = vim.api.nvim_create_augroup
+local au = vim.api.nvim_create_autocmd
+
+au('TextYankPost', {
+  group = ag('yank_highlight', {}),
+  pattern = '*',
+  callback = function()
+    vim.highlight.on_yank { higroup='IncSearch', timeout=300 }
+  end,
+})
+
+
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
-
 -- encoding
 vim.scriptencoding = "utf-8"
 vim.opt.encoding = "utf-8"
@@ -81,3 +92,6 @@ vim.g.copilot_assume_mapped = true
 vim.g.copilot_tab_fallback = ""
 
 vim.opt.updatetime = 50
+
+
+
