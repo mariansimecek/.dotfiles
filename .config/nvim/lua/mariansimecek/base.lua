@@ -33,7 +33,7 @@ vim.opt.shiftwidth = 4
 vim.opt.tabstop = 8
 vim.opt.softtabstop = 0
 vim.opt.expandtab = true
-vim.opt.wrap = false -- No Wrap lines
+vim.opt.wrap = true
 
 -- apparence
 vim.opt.termguicolors = true
