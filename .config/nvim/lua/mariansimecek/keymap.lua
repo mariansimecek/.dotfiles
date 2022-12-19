@@ -2,6 +2,7 @@
 vim.g.mapleader = " "
 local opts = { noremap = true, silent = true }
 
+vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set("n", "Q", "<Nop>", opts)
 -- reload config
 vim.keymap.set("n", "<leader>so", ":source %<CR>")
@@ -12,6 +13,10 @@ vim.keymap.set("n", "<Esc>", ":nohl<CR>")
 vim.keymap.set("n", "<C-s>", ":w<CR>")
 vim.keymap.set("i", "<C-s>", "<Esc>:w<CR>")
 vim.keymap.set("v", "<C-s>", "<Esc>:w<CR>gv")
+
+-- Remap for dealing with word wrap
+vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- support moving in edit mode
 vim.keymap.set("i", "<C-k>", "<Up>")
