@@ -112,4 +112,3 @@ end
 
 vim.api.nvim_set_keymap("n", "<m-3>", "<cmd>lua _HORIZONTAL_TERM3()<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("i", "<m-3>", "<cmd>lua _HORIZONTAL_TERM3()<CR>", { noremap = true, silent = true })
-
