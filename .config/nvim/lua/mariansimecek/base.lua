@@ -1,3 +1,4 @@
+
 vim.cmd("autocmd!")
 
 local ag = vim.api.nvim_create_augroup
@@ -92,3 +93,5 @@ vim.g.copilot_assume_mapped = true
 vim.g.copilot_tab_fallback = ""
 
 vim.opt.updatetime = 50
+
+vim.cmd([[highlight IndentBlanklineChar guifg=#3c3836]])
