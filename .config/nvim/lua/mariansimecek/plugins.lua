@@ -13,7 +13,7 @@ packer.startup(function(use)
 
 
     -- Colors
-    use({ "nyoom-engineering/oxocarbon.nvim" })
+    use("nyoom-engineering/oxocarbon.nvim")
     use("nvim-lualine/lualine.nvim") -- Statusline
     use("kyazdani42/nvim-web-devicons") -- File icon
 
@@ -21,25 +21,25 @@ packer.startup(function(use)
 
     -- Git plugins
     use("lewis6991/gitsigns.nvim") -- show line modifications on left hand side
-    use('tpope/vim-fugitive')
-    use { 'sindrets/diffview.nvim' }
+    use("tpope/vim-fugitive")
+    use("sindrets/diffview.nvim")
 
 
 
     --LSP
     use("williamboman/mason.nvim") -- in charge of managing lsp servers, linters & formatters
     use("williamboman/mason-lspconfig.nvim") -- bridges gap b/w mason & lspconfig
-    use("onsails/lspkind-nvim")
+    use("neovim/nvim-lspconfig")
 
     use("jose-elias-alvarez/typescript.nvim") -- additional functionality for typescript server (e.g. rename file & update imports)
-    use("neovim/nvim-lspconfig")
-    use({ "glepnir/lspsaga.nvim", branch = "main" }) -- enhanced lsp uis
 
     use("jose-elias-alvarez/null-ls.nvim") -- configure formatters & linters
     use("jayp0521/mason-null-ls.nvim") -- bridges gap b/w mason & null-ls
+    use("onsails/lspkind-nvim")
+    use({ "glepnir/lspsaga.nvim", branch = "main" }) -- enhanced lsp uis
     use({ "j-hui/fidget.nvim",
         config = function()
-            require('fidget').setup()
+            require("fidget").setup()
         end,
     })
 
@@ -57,22 +57,36 @@ packer.startup(function(use)
 
 
     -- Autocomplete
+    use {
+        "zbirenbaum/copilot.lua",
+        event = "VimEnter",
+        config = function()
+            vim.defer_fn(function()
+                require("copilot").setup()
+            end, 100)
+        end,
+    }
+    use {
+        "zbirenbaum/copilot-cmp",
+        after = { "copilot.lua" },
+        config = function()
+            require("copilot_cmp").setup()
+        end
+    }
     use("hrsh7th/nvim-cmp") -- Completion
     use("hrsh7th/cmp-buffer") -- nvim-cmp source for buffer words
     use("hrsh7th/cmp-path") -- source for file system paths
     use("hrsh7th/cmp-nvim-lsp") -- nvim-cmp source for neovim's built-in LSP
-    use("rafamadriz/friendly-snippets")
-    use({ 'L3MON4D3/LuaSnip', config = function() require('luasnip.loaders.from_vscode').lazy_load() end, })
+    use({ "L3MON4D3/LuaSnip", config = function() require("luasnip.loaders.from_vscode").lazy_load() end, })
     use("saadparwaiz1/cmp_luasnip") -- for autocompletion
-
-    use("github/copilot.vim")
     use {
         "rambhosale/cmp-bootstrap.nvim",
         after = "nvim-cmp",
     }
+    use("rafamadriz/friendly-snippets")
 
 
-    -- Treesitter
+    --Treesitter
     use({
         "nvim-treesitter/nvim-treesitter",
         run = function()
@@ -81,14 +95,14 @@ packer.startup(function(use)
         end,
     })
     use { -- Additional text objects via treesitter
-        'nvim-treesitter/nvim-treesitter-textobjects',
-        after = 'nvim-treesitter',
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        after = "nvim-treesitter",
     }
 
 
 
     -- Other plugins
-    use('mbbill/undotree')
+    use("mbbill/undotree")
     use({ "numToStr/Comment.nvim",
         requires = "JoosepAlviste/nvim-ts-context-commentstring",
         config = function()
@@ -97,14 +111,14 @@ packer.startup(function(use)
             })
         end,
     })
-    use 'mg979/vim-visual-multi' --  Multiple cursors
-    use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
+    use("mg979/vim-visual-multi") --  Multiple cursors
+    use("tpope/vim-sleuth") -- Detect tabstop and shiftwidth automatically
     use("folke/which-key.nvim")
     use("machakann/vim-sandwich") -- add, delete, change surroundings (it's awesome)
-    use { "akinsho/toggleterm.nvim", tag = '*', config = function()
+    use { "akinsho/toggleterm.nvim", tag = "*", config = function()
         require("toggleterm").setup()
     end }
     -- auto closing
-    -- use("windwp/nvim-autopairs") -- autoclose parens, brackets, quotes, etc...
     use({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" }) -- autoclose tags
+    use("otavioschwanck/cool-substitute.nvim")
 end)
