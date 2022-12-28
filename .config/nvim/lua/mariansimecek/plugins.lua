@@ -111,7 +111,7 @@ packer.startup(function(use)
             })
         end,
     })
-    use("mg979/vim-visual-multi") --  Multiple cursors
+
     use("tpope/vim-sleuth") -- Detect tabstop and shiftwidth automatically
     use("folke/which-key.nvim")
     use("machakann/vim-sandwich") -- add, delete, change surroundings (it's awesome)
