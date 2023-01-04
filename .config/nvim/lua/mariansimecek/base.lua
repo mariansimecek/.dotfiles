@@ -17,8 +17,10 @@ vim.g.loaded_netrwPlugin = 1
 vim.scriptencoding = "utf-8"
 vim.opt.encoding = "utf-8"
 vim.opt.fileencoding = "utf-8"
+--enable spell
+vim.opt.spell = true
 
--- line numebs
+-- line numbers
 vim.wo.number = true
 vim.wo.relativenumber = true
 
@@ -33,7 +35,7 @@ vim.opt.softtabstop = 0
 vim.opt.expandtab = true
 vim.opt.wrap = true
 
--- apparence
+-- Appearance
 vim.opt.termguicolors = true
 vim.opt.cursorline = true
 vim.opt.signcolumn = "yes"

@@ -14,6 +14,13 @@ packer.startup(function(use)
 
     -- Colors
     use("nyoom-engineering/oxocarbon.nvim")
+    -- use({
+    --     'rose-pine/neovim',
+    --     as = 'rose-pine',
+    --     config = function()
+    --         vim.cmd('colorscheme rose-pine')
+    --     end
+    -- })
     use("nvim-lualine/lualine.nvim") -- Statusline
     use("kyazdani42/nvim-web-devicons") -- File icon
 
@@ -113,7 +120,7 @@ packer.startup(function(use)
     })
 
     use("tpope/vim-sleuth") -- Detect tabstop and shiftwidth automatically
-    use("folke/which-key.nvim")
+    -- use("folke/which-key.nvim")
     use("machakann/vim-sandwich") -- add, delete, change surroundings (it's awesome)
     use { "akinsho/toggleterm.nvim", tag = "*", config = function()
         require("toggleterm").setup()

@@ -102,9 +102,9 @@ local options = {
   },
   sources = {
     { name = "copilot"},
+    { name = "nvim_lsp" },
     -- { name = 'cmp_bootstrap' },
     { name = "luasnip" },
-    { name = "nvim_lsp" },
     -- { name = "buffer" },
     { name = "nvim_lua" },
     { name = "path" },

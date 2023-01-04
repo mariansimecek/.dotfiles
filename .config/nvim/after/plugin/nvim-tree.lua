@@ -1,5 +1,5 @@
 local options = {
-   filters = {
+  filters = {
     dotfiles = false,
   },
   disable_netrw = true,
@@ -9,6 +9,7 @@ local options = {
   hijack_unnamed_buffer_when_opening = false,
   update_cwd = true,
   update_focused_file = {
+
     enable = true,
     update_cwd = false,
   },
@@ -17,6 +18,14 @@ local options = {
     side = "left",
     width = 25,
     hide_root_folder = true,
+    mappings = {
+      list = {
+        { key = "<C-v>", action = "" },
+        { key = "<C-x>", action = "" },
+        { key = "<A-v>", action = "vsplit" },
+        { key = "<A-h>", action = "split" },
+      }
+    }
   },
   git = {
     enable = true,
@@ -66,5 +75,3 @@ local options = {
 }
 
 require("nvim-tree").setup(options)
-
-vim.keymap.set("n", "<C-n>", ":NvimTreeToggle<CR>")
