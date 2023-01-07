@@ -11,7 +11,6 @@ packer.startup(function(use)
     use("nvim-lua/plenary.nvim") -- Common utilities
 
 
-
     -- Colors
     use("nyoom-engineering/oxocarbon.nvim")
     -- use({
@@ -60,7 +59,6 @@ packer.startup(function(use)
         },
         tag = "nightly", -- optional, updated every week. (see issue #1193)
     })
-
 
 
     -- Autocomplete

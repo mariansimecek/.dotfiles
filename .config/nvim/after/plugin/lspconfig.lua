@@ -84,6 +84,12 @@ lspconfig["tailwindcss"].setup({
     on_attach = on_attach,
 })
 
+-- csharp server
+lspconfig["omnisharp"].setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
+})
+
 local languageServerPath = vim.fn.stdpath("config") .. "/lua/languageserver"
 local cmd = { "ngserver", "--stdio", "--tsProbeLocations", languageServerPath, "--ngProbeLocations", languageServerPath }
 
