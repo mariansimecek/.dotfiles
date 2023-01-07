@@ -10,9 +10,9 @@ vim.keymap.set("n", "<leader>so", ":source %<CR>")
 vim.keymap.set("n", "<Esc>", ":nohl<CR>")
 
 -- Save file
-vim.keymap.set("n", "<C-s>", ":w<CR>")
-vim.keymap.set("i", "<C-s>", "<Esc>:w<CR>")
-vim.keymap.set("v", "<C-s>", "<Esc>:w<CR>gv")
+vim.keymap.set("n", "<leader>w", ":w<CR>")
+vim.keymap.set("i", "<leader>w", "<Esc>:w<CR>")
+vim.keymap.set("v", "<leader>w", "<Esc>:w<CR>gv")
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
@@ -90,5 +90,18 @@ vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
 
 vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
 
--- vim.keymap.set('n', 'cn', '*``cgn')
--- vim.keymap.set('n', 'cN', '*``cgN')
+-- Helix keybinds
+vim.keymap.set("n", "gs", "^",  {})
+vim.keymap.set("n", "gl", "$")
+vim.keymap.set("n", "ge", "G")
+vim.keymap.set("n", "gh", "0")
+
+--delete single char
+vim.keymap.set("n", "d", "vd")
+
+-- select line
+vim.keymap.set("n", "x", "V")
+vim.keymap.set("v", "x", "j")
+vim.keymap.set("v", "X", "k")
+
+vim.keymap.set("n", "U", "<C-r>")
