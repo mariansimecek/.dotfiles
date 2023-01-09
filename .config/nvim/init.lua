@@ -1,4 +1,5 @@
 require("mariansimecek.keymap")
+require("mariansimecek.helix")
 require("mariansimecek.base")
 require("mariansimecek.plugins")
 require("mariansimecek.commands")

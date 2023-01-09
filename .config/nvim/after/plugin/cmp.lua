@@ -1,4 +1,5 @@
 vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
+
 local present, cmp = pcall(require, "cmp")
 if not present then
   return

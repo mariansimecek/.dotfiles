@@ -35,7 +35,7 @@ vim.opt.softtabstop = 0
 vim.opt.expandtab = true
 vim.opt.wrap = true
 
--- Appearance
+-- appearance
 vim.opt.termguicolors = true
 vim.opt.cursorline = true
 vim.opt.signcolumn = "yes"

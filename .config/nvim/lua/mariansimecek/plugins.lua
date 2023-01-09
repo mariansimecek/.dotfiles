@@ -9,8 +9,7 @@ vim.cmd([[packadd packer.nvim]])
 packer.startup(function(use)
     use("wbthomason/packer.nvim")
     use("nvim-lua/plenary.nvim") -- Common utilities
-
-
+    use("pogyomo/submode.nvim")
     -- Colors
     use("nyoom-engineering/oxocarbon.nvim")
     -- use({
