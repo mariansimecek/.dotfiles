@@ -4,4 +4,4 @@
 name = Marian Šimeček
 email = mariansimecek@gmail.com 
 [core]
-	editor = nvim
+editor = nvim

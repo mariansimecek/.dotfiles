@@ -118,11 +118,10 @@ export PATH="$PATH:/root/scripts"
 export PATH=$PATH:/usr/local/go/bin
 # Aliases
 alias vim=nvim
-alias dev="cd /home/mariansimecek/dev"
+alias dev="cd ~/dev"
 alias devWin="cd /mnt/c/dev/"
 alias ide="/root/scripts/open-dev-tmux"
-alias gs="git status"
 alias dotfiles="cd ~/.dotfiles"
 
 # Load Angular CLI autocompletion.
-source <(ng completion script)
+# source <(ng completion script)

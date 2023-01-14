@@ -18,7 +18,7 @@ vim.scriptencoding = "utf-8"
 vim.opt.encoding = "utf-8"
 vim.opt.fileencoding = "utf-8"
 --enable spell
-vim.opt.spell = true
+vim.opt.spell = false
 
 -- line numbers
 vim.wo.number = true
