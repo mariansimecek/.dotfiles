@@ -90,6 +90,7 @@ lspconfig["omnisharp"].setup({
     on_attach = on_attach,
 })
 
+-- TODO add server path
 local languageServerPath = vim.fn.stdpath("config") .. "/lua/languageserver"
 local cmd = { "ngserver", "--stdio", "--tsProbeLocations", languageServerPath, "--ngProbeLocations", languageServerPath }
 

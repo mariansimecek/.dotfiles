@@ -125,4 +125,5 @@ packer.startup(function(use)
     -- auto closing
     use({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" }) -- autoclose tags
     use("otavioschwanck/cool-substitute.nvim")
+    use("eandrju/cellular-automaton.nvim")
 end)
