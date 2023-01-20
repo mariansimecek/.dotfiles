@@ -12,6 +12,8 @@ packer.startup(function(use)
     use("pogyomo/submode.nvim")
     -- Colors
     use("nyoom-engineering/oxocarbon.nvim")
+    use("krfl/fleetish-vim")
+    -- use("SiddharthShyniben/pitch")
     -- use({
     --     'rose-pine/neovim',
     --     as = 'rose-pine',
