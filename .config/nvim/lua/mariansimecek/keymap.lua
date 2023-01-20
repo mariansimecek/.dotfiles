@@ -1,9 +1,7 @@
 -- custom vim.keymap settings
 vim.g.mapleader = " "
-local opts = { noremap = true, silent = true }
 
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
-vim.keymap.set("n", "Q", "<Nop>", opts)
 -- reload config
 vim.keymap.set("n", "<leader>so", ":source %<CR>")
 -- clear search highlights
@@ -49,17 +47,6 @@ vim.keymap.set("n", "<C-l>", "<C-w>l")
 vim.keymap.set("n", "<C-j>", "<C-w>j")
 vim.keymap.set("n", "<C-k>", "<C-w>k")
 
--- Normal-mode commands
--- vim.keymap.set("n", "<A-j>", ":MoveLine(1)<CR>", opts)
--- vim.keymap.set("n", "<A-k>", ":MoveLine(-1)<CR>", opts)
---
--- Visual-mode commands
--- vim.keymap.set("v", "<A-j>", ":MoveBlock(1)<CR>", opts)
--- vim.keymap.set("v", "<A-k>", ":MoveBlock(-1)<CR>", opts)
-
-
-vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv")
 
 vim.keymap.set("n", "<C-n>", ":NvimTreeToggle<CR>")
 

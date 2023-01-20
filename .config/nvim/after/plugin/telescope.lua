@@ -49,7 +49,7 @@ require('telescope').setup{
       i = {
         ["<Tab>"] = actions.move_selection_next,
         ["<S-Tab>"] = actions.move_selection_previous,
-        ["<C-q>" ] = require("telescope.actions").close,
+        -- ["<C-q>" ] = require("telescope.actions").close,
       },
       n = { ["q"] = require("telescope.actions").close },
     }

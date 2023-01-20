@@ -25,7 +25,6 @@ packer.startup(function(use)
     use("kyazdani42/nvim-web-devicons") -- File icon
 
 
-
     -- Git plugins
     use("lewis6991/gitsigns.nvim") -- show line modifications on left hand side
     use("tpope/vim-fugitive")
@@ -128,4 +127,10 @@ packer.startup(function(use)
     use({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" }) -- autoclose tags
     use("otavioschwanck/cool-substitute.nvim")
     use("eandrju/cellular-automaton.nvim")
+
+    use { "echasnovski/mini.move",
+        config = function()
+            require("mini.move").setup()
+        end,
+    }
 end)

@@ -90,7 +90,7 @@ lspconfig["omnisharp"].setup({
     on_attach = on_attach,
 })
 
-local languageServerPath =  vim.fn.stdpath("data") .. "/mason/bin/ngserver"
+local languageServerPath = vim.fn.stdpath("data") .. "/mason/bin/ngserver"
 local cmd = { "ngserver", "--stdio", "--tsProbeLocations", languageServerPath, "--ngProbeLocations", languageServerPath }
 
 lspconfig.angularls.setup {
