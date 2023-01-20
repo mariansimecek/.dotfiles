@@ -133,4 +133,13 @@ packer.startup(function(use)
             require("mini.move").setup()
         end,
     }
+    -- use {
+    --     "AckslD/nvim-neoclip.lua",
+    --     requires = {
+    --         { 'nvim-telescope/telescope.nvim' },
+    --     },
+    --     config = function()
+    --         require('neoclip').setup()
+    --     end,
+    -- }
 end)
