@@ -1,4 +1,3 @@
-
 local function openConfig()
   local configPath = vim.fn.stdpath("config")
   vim.cmd("edit " .. configPath .. "/init.lua")
