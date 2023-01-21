@@ -1,7 +1,9 @@
--- custom vim.keymap settings
+--ooustom vim.keymap settings
 vim.g.mapleader = " "
 
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+
+vim.keymap.set("n", "<leader>so", ":%so<CR>")
 
 -- clear search highlights
 vim.keymap.set("n", "<Esc>", ":nohl<CR>")
@@ -64,8 +66,8 @@ vim.keymap.set("n", "<leader>sk", ":Telescope keymaps<CR>")
 
 
 -- Format
-vim.keymap.set("n", "<leader>fm", ":lua vim.lsp.buf.format()<CR>")
-vim.keymap.set("v", "<leader>fm", ":lua vim.lsp.buf.format()<CR>")
+vim.keymap.set("n", "<leader>fm", vim.lsp.buf.format)
+vim.keymap.set("v", "<leader>fm", vim.lsp.buf.format)
 
 -- Search and replace
 vim.keymap.set("n", "<leader>rs", ":%s///gc<Left><Left><Left><Left>")
@@ -75,6 +77,7 @@ vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
 
 vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
 
+vim.keymap.set("n", "<leader>l", ":Lazy<CR>")
 
 -- Helix keybinds
 vim.keymap.set("n", "gs", "^")
