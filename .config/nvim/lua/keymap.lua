@@ -3,14 +3,14 @@ vim.g.mapleader = " "
 
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
-vim.keymap.set("n", "<leader>so", ":%so<CR>")
+vim.keymap.set("n", "<leader>so", ":%so<CR>", { desc = "Source file" })
 
 -- clear search highlights
 vim.keymap.set("n", "<Esc>", ":nohl<CR>")
 
 -- Save file
-vim.keymap.set("n", "<leader>w", ":w<CR>")
-vim.keymap.set("v", "<leader>w", "<Esc>:w<CR>gv")
+vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "Save file" })
+vim.keymap.set("v", "<leader>w", "<Esc>:w<CR>gv", { desc = "Save file" })
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
@@ -66,16 +66,19 @@ vim.keymap.set("n", "<leader>sk", ":Telescope keymaps<CR>")
 
 
 -- Format
-vim.keymap.set("n", "<leader>fm", vim.lsp.buf.format)
-vim.keymap.set("v", "<leader>fm", vim.lsp.buf.format)
+vim.keymap.set({ "n", "v" }, "<leader>fm", vim.lsp.buf.format, { desc = "Format file" })
+
+-- Spell toggle
+vim.keymap.set("n", "<leader>ss", ":setlocal spell!<CR>", { desc = "Toggle spell" })
+
 
 -- Search and replace
-vim.keymap.set("n", "<leader>rs", ":%s///gc<Left><Left><Left><Left>")
-vim.keymap.set("v", "<leader>rs", ":s///gc<Left><Left><Left><Left>")
+vim.keymap.set("n", "<leader>rs", ":%s///gc<Left><Left><Left><Left>", { desc = "Native search and replace" })
+vim.keymap.set("v", "<leader>rs", ":s///gc<Left><Left><Left><Left>", { desc = "Native search and replace in selection" })
 
-vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
+vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Undotree" })
 
-vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
+vim.keymap.set("n", "<leader>gs", vim.cmd.Git, { desc = "Git status" })
 
 vim.keymap.set("n", "<leader>l", ":Lazy<CR>")
 

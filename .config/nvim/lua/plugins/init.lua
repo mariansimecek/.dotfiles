@@ -22,7 +22,7 @@ return {
 	{ "sindrets/diffview.nvim", cmd = "DiffviewOpen" },
 
 	-- Other plugins
-	{ "mbbill/undotree", keys = "<leader>u" },
+	{ "mbbill/undotree", cmd = "UndotreeToggle" },
 
 	{
 		"numToStr/Comment.nvim",
@@ -73,6 +73,5 @@ return {
 		vim.api.nvim_set_keymap('n', 'g*', [[g*<Cmd>lua require('hlslens').start()<CR>]], kopts)
 		vim.api.nvim_set_keymap('n', 'g#', [[g#<Cmd>lua require('hlslens').start()<CR>]], kopts)
 
-		vim.api.nvim_set_keymap('n', '<Leader>l', '<Cmd>noh<CR>', kopts)
 	end }
 }
