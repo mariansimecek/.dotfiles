@@ -93,11 +93,12 @@ return {
           expand = '',
           collapse = '',
           preview = ' ',
-          code_action = '',
-          diagnostic = '',
+          code_action = '',
+          diagnostic = ' ',
           incoming = '',
           outgoing = '',
           colors = {
+            red = '#ee5396',
             magenta = '#ee5396',
             orange = '#ee5396',
             yellow = '#ee5396',
@@ -114,7 +115,6 @@ return {
       vim.api.nvim_set_hl(0, "SagaBorder", { link = "TelescopeNormal" })
       vim.api.nvim_set_hl(0, "RenameNormal", { link = "TelescopePromptNormal" })
       vim.api.nvim_set_hl(0, "RenameBorder", { link = "TelescopePromptBorder" })
-      vim.api.nvim_set_hl(0, "LspSagaLightBulb", { link = "TelescopeMatching" })
       vim.api.nvim_set_hl(0, "CodeActionText", { link = "TelescopeNormal" })
     end
   },
