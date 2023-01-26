@@ -7,9 +7,9 @@ return {
       "mason.nvim",
       "williamboman/mason-lspconfig.nvim",
       "hrsh7th/cmp-nvim-lsp",
+      "jose-elias-alvarez/typescript.nvim"
     },
     config = function()
-
       require('mason-lspconfig').setup({
         ensure_installed = {
           'tsserver',
@@ -18,27 +18,29 @@ return {
 
       local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
       local lsp_attach = function(client, bufnr)
-        -- keybind options
-        local opts = { noremap = true, silent = true, buffer = bufnr }
-
         -- set keybinds
-        vim.keymap.set("n", "gf", "<cmd>Lspsaga lsp_finder<CR>", opts) -- show definition, references
-        vim.keymap.set("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts) -- got to declaration
-        vim.keymap.set("n", "gd", "<cmd>Lspsaga peek_definition<CR>", opts) -- see definition and make edits in window
-        vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts) -- go to implementation
-        vim.keymap.set("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", opts) -- see available code actions
-        vim.keymap.set("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", opts) -- smart rename
-        vim.keymap.set("n", "<leader>D", "<cmd>Lspsaga show_line_diagnostics<CR>", opts) -- show  diagnostics for line
-        vim.keymap.set("n", "<leader>d", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts) -- show diagnostics for cursor
-        vim.keymap.set("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts) -- jump to previous diagnostic in buffer
-        vim.keymap.set("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts) -- jump to next diagnostic in buffer
-        vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts) -- show documentation for what is under cursor
+        vim.keymap.set("n", "gf", "<cmd>Lspsaga lsp_finder<CR>", { desc = "LSP show [g]o [f]inder" })
+        vim.keymap.set("n", "gd", "<cmd>Lspsaga peek_definition<CR>", { desc = "LSP show [g]o [d]efinition" })
+        vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", { desc = "LSP [g]o to [D]eclaration" })
+        vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", { desc = "LSP [g]o to [i]mplementation" })
+        vim.keymap.set("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", { desc = "Show [c]ode [a]ction" })
+        vim.keymap.set("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", { desc = "LSP [r]e[n]ame" })
+        vim.keymap.set("n", "<leader>D", "<cmd>Lspsaga show_line_diagnostics<CR>", { desc = "Show line [D]iagnostic" })
+        vim.keymap.set("n", "<leader>d", "<cmd>Lspsaga show_cursor_diagnostics<CR>",
+          { desc = "Show cursor [d]iagnostic" })
+        vim.keymap.set("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { desc = "Jump prev [d]iagnostic" })
+        vim.keymap.set("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", { desc = "Jump next [d]iagnostic" })
+        vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", { desc = "Hover docs" })
 
         -- typescript specific keymaps (e.g. rename file and update imports)
         if client.name == "tsserver" then
-          vim.keymap.set("n", "<leader>rf", ":TypecriptRenameFile<CR>") -- rename file and update imports
-          vim.keymap.set("n", "<leader>oi", ":TypescriptOrganizeImports<CR>") -- organize imports (not in youtube nvim video)
-          vim.keymap.set("n", "<leader>ru", ":TypescriptRemoveUnused<CR>") -- remove unused variables (not in youtube nvim video)
+          require("typescript").setup({})
+          vim.keymap.set("n", "<leader>rf", ":TypecriptRenameFile<CR>", { desc = "Typescript [r]ename [f]ile" })
+          vim.keymap.set("n", "<leader>oi", ":TypescriptOrganizeImports<CR>",
+            { desc = "Typescript [o]rganize [i]mports" })
+          vim.keymap.set("n", "<leader>ru", ":TypescriptRemoveUnused<CR>", { desc = "Typescript [r]emove [u]nused" })
+          vim.keymap.set("n", "<leader>mi", ":TypescriptAddMissingImports<CR>",
+            { desc = "Typsecript add [m]issing [i]mports" })
         end
 
       end

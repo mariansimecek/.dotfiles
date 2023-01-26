@@ -52,6 +52,7 @@ vim.keymap.set("n", "<C-k>", "<C-w>k")
 vim.keymap.set("n", "<C-n>", ":NvimTreeToggle<CR>")
 
 -- Telescope
+-- TODO: add desc
 vim.keymap.set("n", "<leader>ff", ":Telescope find_files<CR>")
 vim.keymap.set("n", "<leader>fa", ":Telescope find_files follow=true no_ignore=true hidden=true<CR>")
 vim.keymap.set("n", "<leader>fo", ":Telescope oldfiles<CR>")
