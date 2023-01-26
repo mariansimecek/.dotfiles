@@ -1,21 +1,30 @@
 return {
+	{
+		"L3MON4D3/LuaSnip",
+		dependencies = {
+			"rafamadriz/friendly-snippets",
+			config = function()
+				require("luasnip.loaders.from_vscode").lazy_load()
+			end,
+		},
+		opts = {
+			history = true,
+			delete_check_events = "TextChanged",
+		},
+		-- stylua: ignore
+	},
 
 	{
 		"hrsh7th/nvim-cmp",
+		version = false, -- last release is way too old
+		event = "InsertEnter",
 		dependencies = {
-			"rambhosale/cmp-bootstrap.nvim",
+			"hrsh7th/cmp-nvim-lsp", -- nvim-cmp source for neovim's built-in LSP
 			"hrsh7th/cmp-buffer", -- nvim-cmp source for buffer words
 			"hrsh7th/cmp-path", -- source for file system paths
-			"hrsh7th/cmp-nvim-lsp", -- nvim-cmp source for neovim's built-in LSP
-			{
-				"L3MON4D3/LuaSnip",
-				config = function()
-					require("luasnip.loaders.from_vscode").lazy_load()
-				end,
-			},
 			"saadparwaiz1/cmp_luasnip", -- for autocompletion
-			"rafamadriz/friendly-snippets",
-			"zbirenbaum/copilot.lua"
+			"rambhosale/cmp-bootstrap.nvim",
+			"zbirenbaum/copilot.lua",
 
 		},
 		config = function()
