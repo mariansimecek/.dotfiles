@@ -99,7 +99,7 @@ return {
           outgoing = '',
           colors = {
             normal_bg = '#161616',
-            title_bg = '#161616',
+            title_bg = '#262626',
             red = '#ee5396',
             magenta = '#ee5396',
             orange = '#ee5396',
