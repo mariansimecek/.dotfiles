@@ -23,7 +23,7 @@ return {
         vim.keymap.set("n", "gd", "<cmd>Lspsaga peek_definition<CR>", { desc = "LSP show [g]o [d]efinition" })
         vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", { desc = "LSP [g]o to [D]eclaration" })
         vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", { desc = "LSP [g]o to [i]mplementation" })
-        vim.keymap.set("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", { desc = "Show [c]ode [a]ction" })
+        vim.keymap.set("n", "<leader>a", "<cmd>Lspsaga code_action<CR>", { desc = "Show [c]ode [a]ction" })
         vim.keymap.set("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", { desc = "LSP [r]e[n]ame" })
         vim.keymap.set("n", "<leader>D", "<cmd>Lspsaga show_line_diagnostics<CR>", { desc = "Show line [D]iagnostic" })
         vim.keymap.set("n", "<leader>d", "<cmd>Lspsaga show_cursor_diagnostics<CR>",
@@ -95,8 +95,8 @@ return {
           expand = '',
           collapse = '',
           preview = ' ',
-          code_action = ' ',
-          diagnostic = ' ',
+          code_action = ' ',
+          diagnostic = ' ',
           incoming = '',
           outgoing = '',
           colors = {
@@ -116,6 +116,18 @@ return {
           enable = false,
         },
       })
+
+-- #262626
+-- #393939
+-- #ff7eb6
+-- #42be65
+-- #82cfff
+-- #33b1ff
+-- #ee5396
+-- #3ddbd9
+-- #dde1e6
+-- #ffffff
+
       vim.api.nvim_set_hl(0, "SagaBorder", { link = "TelescopeNormal" })
       vim.api.nvim_set_hl(0, "SagaNormal", { link = "TelescopeNormal" })
       vim.api.nvim_set_hl(0, "RenameNormal", { link = "TelescopePromptNormal" })

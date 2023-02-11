@@ -59,8 +59,13 @@ return { "nvim-lualine/lualine.nvim",
           end
         end },
         lualine_x = {
-          { 'diagnostics', sources = { "nvim_diagnostic" }, symbols = { error = ' ', warn = ' ', info = ' ',
-            hint = ' ' } },
+          { 'diagnostics', sources = { "nvim_diagnostic" },
+            symbols = {
+              error = ' ',
+              warn = ' ',
+              info = ' ',
+              hint = ' '
+            } },
           'filetype'
         },
         lualine_y = { 'diff' },

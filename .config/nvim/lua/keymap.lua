@@ -67,7 +67,7 @@ vim.keymap.set("n", "<leader>sk", ":Telescope keymaps<CR>")
 
 
 -- Format
-vim.keymap.set({ "n", "v" }, "<leader>fm", vim.lsp.buf.format, { desc = "Format file" })
+vim.keymap.set({ "n", "v" }, "<leader>m", vim.lsp.buf.format, { desc = "Format file" })
 
 -- Spell toggle
 vim.keymap.set("n", "<leader>ss", ":setlocal spell!<CR>", { desc = "Toggle spell" })
