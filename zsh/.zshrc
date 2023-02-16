@@ -131,3 +131,5 @@ eval "$(starship init zsh)"
 
 # bun completions
 [ -s "/home/marian-simecek/.bun/_bun" ] && source "/home/marian-simecek/.bun/_bun"
+
+eval $(thefuck --alias)
