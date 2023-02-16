@@ -2,7 +2,7 @@ return {
     { "neovim/nvim-lspconfig",
         event = "BufReadPre",
         dependencies = {
-            { "j-hui/fidget.nvim", config = true }, -- Lsp status notifications
+            { "j-hui/fidget.nvim", config = true, opts = { text = { spinner = "dots", } } }, -- Lsp status notifications c
             { 'folke/neodev.nvim', config = true },
             "mason.nvim",
             "williamboman/mason-lspconfig.nvim",
@@ -19,6 +19,7 @@ return {
             local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
             local lsp_attach = function(client, bufnr)
                 -- set keybinds
+                vim.keymap.set("n", "gr", "<cmd>Lspsaga lsp_finder<CR>", { desc = "LSP show [g]o [r]eferences" })
                 vim.keymap.set("n", "gf", "<cmd>Lspsaga lsp_finder<CR>", { desc = "LSP show [g]o [f]inder" })
                 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "LSP show [g]o [d]efinition" })
                 vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>",
@@ -27,7 +28,7 @@ return {
                     { desc = "LSP [g]o to [i]mplementation" })
                 vim.keymap.set("n", "<leader>a", "<cmd>Lspsaga code_action<CR>", { desc = "Show [c]ode [a]ction" })
                 vim.keymap.set("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", { desc = "LSP [r]e[n]ame" })
-                vim.keymap.set("n", "<leader>D", "<cmd>Lspsaga show_line_diagnostics<CR>",
+                vim.keymap.set("n", "<leader>dl", "<cmd>Lspsaga show_line_diagnostics<CR>",
                     { desc = "Show line [D]iagnostic" })
                 vim.keymap.set("n", "<leader>d", "<cmd>Lspsaga show_cursor_diagnostics<CR>",
                     { desc = "Show cursor [d]iagnostic" })
@@ -72,22 +73,36 @@ return {
             require("mason").setup()
         end,
     },
+    "jose-elias-alvarez/null-ls.nvim",
+    event = "BufEnter",
+    config = function()
+        local null_ls = require 'null-ls'
+        local formatting = null_ls.builtins.formatting
+        local code_actions = null_ls.builtins.code_actions
+        local diagnostics = null_ls.builtins.diagnostics
+        require("null-ls").setup({
+            sources = {
+                formatting.prettierd,
+                formatting.stylua,
+                code_actions.eslint_d,
+                diagnostics.eslint_d
+            }
+        })
 
-    { "jayp0521/mason-null-ls.nvim",
-        dependencies = {
-            "jose-elias-alvarez/null-ls.nvim",
-            "williamboman/mason.nvim"
-        },
-        config = function()
-            require("mason-null-ls").setup({
-                ensure_installed = {
-                    "prettier",
-                    "stylua",
-                    "eslint_d",
-                },
-                automatic_installation = true,
-            })
-        end },
+        require("mason-null-ls").setup({
+            ensure_installed = {
+                "prettier",
+                "stylua",
+                "eslint_d",
+            },
+            automatic_installation = true,
+            automatic_setup = true,
+        })
+    end,
+    dependencies = {
+        "jayp0521/mason-null-ls.nvim",
+        "williamboman/mason.nvim"
+    },
     {
         "glepnir/lspsaga.nvim",
         config = function()
@@ -109,5 +124,4 @@ return {
             })
         end
     },
-
 }

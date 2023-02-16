@@ -35,16 +35,7 @@ return {
                     file_status = true, -- displays file status (readonly status, modified status)
                     path = 0 -- 0 = just filename, 1 = relative path, 2 = absolute path
                 } },
-                lualine_c = { function()
-                    local branch = vim.b.gitsigns_status_dict or { head = "" }
-                    local is_head_empty = branch.head ~= ""
-
-                    if is_head_empty then
-                        return string.format("(λ • #%s) ", branch.head or "")
-                    else
-                        return ""
-                    end
-                end },
+                lualine_c = {'branch' },
                 lualine_x = {
                     { 'diagnostics', sources = { "nvim_diagnostic" },
                         symbols = {
