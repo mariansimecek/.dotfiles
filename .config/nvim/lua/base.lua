@@ -7,7 +7,7 @@ au("TextYankPost", {
     group = ag("yank_highlight", {}),
     pattern = "*",
     callback = function()
-        vim.highlight.on_yank { higroup = "IncSearch", timeout = 300 }
+        vim.highlight.on_yank({ higroup = "IncSearch", timeout = 300 })
     end,
 })
 
@@ -47,8 +47,6 @@ vim.opt.background = "dark"
 
 vim.o.fillchars = "vert: ,horiz: "
 
-
-
 -- cursor
 vim.cmd("set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50")
 -- Undercurl
@@ -86,7 +84,6 @@ vim.api.nvim_create_autocmd("InsertLeave", {
     command = "set nopaste",
 })
 
-
 -- clipboard
 vim.opt.clipboard:append("unnamedplus") -- use system clipboard as default register
 
@@ -99,7 +96,6 @@ vim.g.copilot_tab_fallback = ""
 vim.opt.updatetime = 50
 
 -- vim.cmd([[highlight IndentBlanklineChar guifg=#3c3836]])
-
 
 vim.cmd([[
 sign define DiagnosticSignError text= texthl=DiagnosticSignError linehl= numhl=

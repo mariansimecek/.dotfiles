@@ -1,13 +1,14 @@
 return {
     "nvim-tree/nvim-tree.lua",
     dependencies = {
-        { "nvim-tree/nvim-web-devicons",
+        {
+            "nvim-tree/nvim-web-devicons",
             config = function()
-                require("nvim-web-devicons").setup {
+                require("nvim-web-devicons").setup({
                     override = {},
-                    default = true
-                }
-            end
+                    default = true,
+                })
+            end,
         },
     },
     cmd = "NvimTreeToggle",
@@ -39,8 +40,8 @@ return {
                         { key = "<C-x>", action = "" },
                         { key = "<A-v>", action = "vsplit" },
                         { key = "<A-h>", action = "split" },
-                    }
-                }
+                    },
+                },
             },
             git = {
                 enable = true,
@@ -88,5 +89,5 @@ return {
                 },
             },
         })
-    end
+    end,
 }
