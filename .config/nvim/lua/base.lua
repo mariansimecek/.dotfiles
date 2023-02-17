@@ -45,6 +45,10 @@ vim.opt.background = "dark"
 -- vim.opt.wildoptions = 'pum
 -- vim.opt.pumblend = 5
 
+vim.o.fillchars = "vert: ,horiz: "
+
+
+
 -- cursor
 vim.cmd("set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50")
 -- Undercurl
@@ -94,7 +98,7 @@ vim.g.copilot_tab_fallback = ""
 
 vim.opt.updatetime = 50
 
-vim.cmd([[highlight IndentBlanklineChar guifg=#3c3836]])
+-- vim.cmd([[highlight IndentBlanklineChar guifg=#3c3836]])
 
 
 vim.cmd([[
