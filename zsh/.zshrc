@@ -1,5 +1,7 @@
+ # Fig pre block. Keep at the top of this file.
+# [[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -71,7 +73,7 @@ export TERM=xterm-256color
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git tmux git zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git tmux git zsh-autosuggestions zsh-syntax-highlighting fzf)
 
 source $ZSH/oh-my-zsh.sh
 # source $ZSH_CUSTOM/colors/lscolors.sh
@@ -116,6 +118,14 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # PATHs
 export PATH="$PATH:/root/scripts"
 export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:/home/marian-simecek/.local/share/bob/nvim-bin
+export PATH="$PATH:/home/marian-simecek/.deno/bin"
+export PATH="$PATH:/home/marian-simecek/.dotnet/"
+export PATH=$PATH:$HOME/.dotnet/tools
+export DOTNET_ROOT=$HOME/.dotnet
+export PATH=$PATH:$DOTNET_ROOT
+export PATH=$PATH:~/.local/share/OmniSharp
+export PATH=$PATH:~/.local/share/netcoredbg
 
 # Aliases
 alias vim=nvim
@@ -133,3 +143,6 @@ eval "$(starship init zsh)"
 [ -s "/home/marian-simecek/.bun/_bun" ] && source "/home/marian-simecek/.bun/_bun"
 
 eval $(thefuck --alias)
+
+# Fig post block. Keep at the bottom of this file.
+# [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"

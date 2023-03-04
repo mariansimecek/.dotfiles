@@ -2,7 +2,30 @@ return {
     {
         "neovim/nvim-lspconfig",
         dependencies = {
-            { "j-hui/fidget.nvim", opts = { text = { spinner = "dots" } } }, -- Lsp status notifications
+            {
+                "j-hui/fidget.nvim",
+                opts = {
+                    text = { spinner = "dots" },
+                    sources = {
+                            ["null-ls"] = {
+                            ignore = true,
+                        },
+                    },
+                    -- fmt = {
+                    --     task = function(task_name, message, percentage)
+                    --         if task_name == "code_action" then
+                    --             return false
+                    --         end
+                    --         return string.format(
+                    --             "%s%s [%s]",
+                    --             message,
+                    --             percentage and string.format(" (%s%%)", percentage) or "",
+                    --             task_name
+                    --         )
+                    --     end,
+                    -- },
+                },
+            }, -- Lsp status notifications
             { "folke/neodev.nvim", config = true },
             "mason.nvim",
             "williamboman/mason-lspconfig.nvim",
@@ -28,9 +51,9 @@ return {
                 vim.keymap.set("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", { desc = "LSP [r]e[n]ame" })
                 vim.keymap.set(
                     "n",
-                    "<leader>dl",
+                    "<leader>ld",
                     "<cmd>Lspsaga show_line_diagnostics<CR>",
-                    { desc = "Show line [D]iagnostic" }
+                    { desc = "Show [l]ine [d]iagnostic" }
                 )
                 vim.keymap.set(
                     "n",
@@ -101,12 +124,12 @@ return {
             local null_ls = require("null-ls")
             null_ls.setup({
                 sources = {
+                    -- require("typescript.extensions.null-ls.code-actions"),
                     null_ls.builtins.formatting.prettier,
                     null_ls.builtins.formatting.stylua,
-                    null_ls.builtins.diagnostics.eslint_d,
-                    null_ls.builtins.code_actions.eslint_d,
+                    null_ls.builtins.diagnostics.eslint,
+                    null_ls.builtins.code_actions.eslint,
                     null_ls.builtins.completion.spell,
-                    require("typescript.extensions.null-ls.code-actions"),
                 },
             })
 

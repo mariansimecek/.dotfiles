@@ -34,14 +34,9 @@ vim.keymap.set("i", "<Right>", "<Nop>")
 
 -- disable adding char to buffer
 vim.keymap.set("n", "x", '"_x')
-vim.keymap.set({ "n", "v" }, "p", "P")
 
--- vim.keymap.set("n", "<leader>y", "\"+y")
--- vim.keymap.set("v", "<leader>y", "\"+y")
--- vim.keymap.set("n", "<leader>Y", "\"+Y")
---
--- vim.keymap.set("n", "<leader>d", "\"_d")
--- vim.keymap.set("v", "<leader>d", "\"_d")
+-- fix copy paste
+vim.keymap.set("v", "p", '"_dP')
 
 vim.keymap.set("n", "<C-h>", "<C-w>h")
 vim.keymap.set("n", "<C-l>", "<C-w>l")
@@ -49,6 +44,12 @@ vim.keymap.set("n", "<C-j>", "<C-w>j")
 vim.keymap.set("n", "<C-k>", "<C-w>k")
 
 vim.keymap.set("n", "<C-n>", ":NvimTreeToggle<CR>")
+-- DAP
+vim.keymap.set("n", "<leader>gb", ":lua require'dap'.toggle_breakpoint()<CR>")
+vim.keymap.set("n", "<leader>gB", ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>")
+vim.keymap.set("n", "<leader>gh", ":lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>")
+vim.keymap.set("n", "<leader>gl", ":lua require'dapui'.toggle()<CR>")
+--
 
 -- Telescope
 -- TODO: add desc
@@ -65,11 +66,11 @@ vim.keymap.set("n", "<leader>fh", ":Telescope help_tags<CR>")
 vim.keymap.set("n", "<leader>sk", ":Telescope keymaps<CR>")
 
 local function format()
-    vim.lsp.buf.format({
-        filter = function(client)
-            return client.name ~= "tsserver"
-        end,
-    })
+  vim.lsp.buf.format({
+    filter = function(client)
+      return client.name ~= "tsserver"
+    end,
+  })
 end
 -- Format
 vim.keymap.set({ "n", "v" }, "<leader>m", format, { desc = "Format file" })
@@ -80,10 +81,10 @@ vim.keymap.set("n", "<leader>ss", ":setlocal spell!<CR>", { desc = "Toggle spell
 -- Search and replace
 vim.keymap.set("n", "<leader>rs", ":%s///gc<Left><Left><Left><Left>", { desc = "Native search and replace" })
 vim.keymap.set(
-    "v",
-    "<leader>rs",
-    ":s///gc<Left><Left><Left><Left>",
-    { desc = "Native search and replace in selection" }
+  "v",
+  "<leader>rs",
+  ":s///gc<Left><Left><Left><Left>",
+  { desc = "Native search and replace in selection" }
 )
 
 vim.keymap.set("n", "<leader>gs", vim.cmd.Git, { desc = "Git status" })
@@ -96,12 +97,11 @@ vim.keymap.set({ "n", "v" }, "gl", "$")
 vim.keymap.set({ "n", "v" }, "ge", "G")
 vim.keymap.set({ "n", "v" }, "gh", "0")
 
-vim.keymap.set("n", "ma", "va")
-vim.keymap.set("n", "mi", "vi")
-
 -- delete single char
 vim.keymap.set("n", "d", "vd")
-vim.keymap.set("n", "c", "vc")
+
+--not working with cool substitute
+-- vim.keymap.set("n", "c", "vc")
 
 -- select line
 vim.keymap.set("n", "x", "V")
@@ -109,3 +109,6 @@ vim.keymap.set("v", "x", "j")
 vim.keymap.set("v", "X", "k")
 vim.keymap.set("n", "U", "<C-r>")
 vim.keymap.set("v", ";", "<Esc>")
+
+vim.keymap.set("n", "ma", "va")
+vim.keymap.set("n", "mi", "vi")
