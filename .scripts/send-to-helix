@@ -1,0 +1,20 @@
+#! /bin/bash
+
+#get argument
+
+filepath=$1
+
+
+#check if zellij is running
+if ! pgrep -x "zellij" > /dev/null; then
+  echo "Zellij not running"
+  exit 1
+fi
+
+zellij -s helix action close-pane # esc
+zellij -s helix action write 27 # esc
+zellij -s helix action write-chars ":o $filepath"
+zellij -s helix action write 13 # enter
+
+
+exit 1
