@@ -70,6 +70,7 @@ local function format()
     filter = function(client)
       return client.name ~= "tsserver"
     end,
+    timeout_ms = 2000
   })
 end
 -- Format
