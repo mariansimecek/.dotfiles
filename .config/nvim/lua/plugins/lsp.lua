@@ -7,7 +7,7 @@ return {
                 opts = {
                     text = { spinner = "dots" },
                     sources = {
-                            ["null-ls"] = {
+                        ["null-ls"] = {
                             ignore = true,
                         },
                     },
