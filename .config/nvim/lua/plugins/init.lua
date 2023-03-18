@@ -9,6 +9,7 @@ return {
                     theme_style = "dark_default",
                     function_style = "italic",
                     dark_sidebar = false,
+                    transparent = true
                 })
             end,
         },

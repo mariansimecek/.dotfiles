@@ -44,7 +44,7 @@ return {
                 -- set keybinds
                 vim.keymap.set("n", "gr", "<cmd>Lspsaga lsp_finder<CR>", { desc = "LSP show [g]o [r]eferences" })
                 vim.keymap.set("n", "gf", "<cmd>Lspsaga lsp_finder<CR>", { desc = "LSP show [g]o [f]inder" })
-                vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "LSP show [g]o [d]efinition" })
+                vim.keymap.set("n", "gd", "<C-]>", { desc = "LSP show [g]o [d]efinition" })
                 vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "LSP [g]o to [D]eclaration" })
                 vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { desc = "LSP [g]o to [i]mplementation" })
                 vim.keymap.set("n", "<leader>a", "<cmd>Lspsaga code_action<CR>", { desc = "Show [c]ode [a]ction" })
