@@ -116,11 +116,12 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 
 # PATHs
-export PATH="$PATH:/root/scripts"
+export PATH=$PATH:~/.scripts
+export PATH=$PATH:~/.local/bin
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:/home/marian-simecek/.local/share/bob/nvim-bin
-export PATH="$PATH:/home/marian-simecek/.deno/bin"
-export PATH="$PATH:/home/marian-simecek/.dotnet/"
+export PATH=$PATH:/home/marian-simecek/.deno/bin
+export PATH=$PATH:/home/marian-simecek/.dotnet/
 export PATH=$PATH:$HOME/.dotnet/tools
 export DOTNET_ROOT=$HOME/.dotnet
 export PATH=$PATH:$DOTNET_ROOT
@@ -134,6 +135,25 @@ alias devWin="cd /mnt/c/dev/"
 alias ide="/root/scripts/open-dev-tmux"
 alias dotfiles="cd ~/.dotfiles"
 alias gs="git status"
+
+# function proj() {
+#   cd "$(find ~/dev -type d -name .git -exec dirname {} \; 2>/dev/null  | (sleep 0.5; fzf --preview 'ls -la {}'))"
+# }
+# #
+# function proj() {
+#   local selected_dir
+#   selected_dir=$(find ~/dev -type d -name .git -exec dirname {} \; 2>/dev/null | (read -t 0.5; cat) | fzf --preview 'ls -la {}') && cd "$selected_dir"
+# }
+# alias proj=proj
+
+function proj() {
+  local dir=$(find ~/dev -type d -name .git -exec dirname {} \; 2>/dev/null | fzf --preview 'ls -la {}' --expect=ctrl-c | tr -d '\n')
+  echo $dir
+  if [[ -n $dir ]]; then
+    cd "$dir"
+  fi
+}
+
 # Load Angular CLI autocompletion.
 # source <(ng completion script)
 
@@ -142,7 +162,7 @@ eval "$(starship init zsh)"
 # bun completions
 [ -s "/home/marian-simecek/.bun/_bun" ] && source "/home/marian-simecek/.bun/_bun"
 
-eval $(thefuck --alias)
+# eval $(thefuck --alias)
 
 # Fig post block. Keep at the bottom of this file.
 # [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
