@@ -119,6 +119,7 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 export PATH=$PATH:~/.scripts
 export PATH=$PATH:~/.local/bin
 export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:$HOME/go/bin
 export PATH=$PATH:/home/marian-simecek/.local/share/bob/nvim-bin
 export PATH=$PATH:/home/marian-simecek/.deno/bin
 export PATH=$PATH:/home/marian-simecek/.dotnet/
@@ -158,6 +159,7 @@ function proj() {
 # source <(ng completion script)
 
 eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
 
 # bun completions
 [ -s "/home/marian-simecek/.bun/_bun" ] && source "/home/marian-simecek/.bun/_bun"
