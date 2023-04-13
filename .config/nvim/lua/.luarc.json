@@ -4,5 +4,6 @@
     ],
     "diagnostics.globals": [
         "root_dir"
-    ]
+    ],
+    "workspace.checkThirdParty": false
 }

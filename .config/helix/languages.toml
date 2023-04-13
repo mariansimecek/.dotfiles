@@ -20,10 +20,13 @@ name = "typescript"
 formatter = { command = 'prettier', args = ["--parser", "typescript"] }
 auto-format = true
 
+[[language]]
+name = "markdown"
+file-types = ["mdx", "md", "markdown", "PULLREQ_EDITMSG"]
 
-# [[language]]
-# name = "angular"
-# scope = "source.angular"
-# roots = ["angular.json"]
-# language-server = { command = "ngserver", args = ["--stdio", "--tsProbeLocations", "$(npm -g root)", "--ngProbeLocations", "$(npm -g root)"] }
-# file-types = ["ts", "html"]
+[[language]]
+name = "angular"
+scope = "source.angular"
+roots = ["angular.json"]
+language-server = { command = "ngserver", args = ["--stdio", "--tsProbeLocations", "$(npm -g root)", "--ngProbeLocations", "$(npm -g root)"] }
+file-types = ["ts", "html"]
