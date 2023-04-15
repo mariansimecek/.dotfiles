@@ -31,6 +31,7 @@ return {
             "williamboman/mason-lspconfig.nvim",
             "hrsh7th/cmp-nvim-lsp",
             "jose-elias-alvarez/typescript.nvim",
+            "Hoffs/omnisharp-extended-lsp.nvim",
         },
         config = function()
             require("mason-lspconfig").setup({
@@ -95,6 +96,12 @@ return {
                         { desc = "Typsecript add [m]issing [i]mports" }
                     )
                 end
+                -- csharp specific
+                if client.name == "omnisharp" or client.name == "omnisharp_mono" then
+                    vim.keymap.set("n", "gd", function()
+                        require("omnisharp_extended").telescope_lsp_definitions()
+                    end, { desc = "LSP show [g]o [d]efinition - c#" })
+                end
             end
 
             local lspconfig = require("lspconfig")
@@ -127,6 +134,7 @@ return {
                     -- require("typescript.extensions.null-ls.code-actions"),
                     null_ls.builtins.formatting.prettier,
                     null_ls.builtins.formatting.stylua,
+                    null_ls.builtins.formatting.csharpier,
                     null_ls.builtins.diagnostics.eslint_d,
                     null_ls.builtins.code_actions.eslint_d,
                     null_ls.builtins.completion.spell,
