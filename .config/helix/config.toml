@@ -4,6 +4,9 @@ theme = "fleet_dark"
 true-color = true
 text-width = 80
 
+[editor.soft-wrap]
+enable = true
+
 [editor.cursor-shape]
 insert = "bar"
 

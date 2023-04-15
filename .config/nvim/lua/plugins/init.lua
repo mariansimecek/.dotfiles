@@ -2,17 +2,10 @@ return {
     { "nvim-lua/plenary.nvim", lazy = true },
     -- "nyoom-engineering/oxocarbon.nvim",
     {
-        {
-            "projekt0n/github-nvim-theme",
-            config = function()
-                require("github-theme").setup({
-                    theme_style = "dark_default",
-                    function_style = "italic",
-                    dark_sidebar = false,
-                    transparent = true
-                })
-            end,
-        },
+        "razcoen/fleet.nvim",
+        config = function()
+            vim.cmd.colorscheme 'fleet'
+        end,
     },
     -- Git plugins
 
@@ -51,7 +44,6 @@ return {
                     find_left = "", -- Find surrounding (to the left)
                     highlight = "", -- Highlight surrounding
                     update_n_lines = "", -- Update `n_lines`
-
                     suffix_last = "l", -- Suffix to search with "prev" method
                     suffix_next = "n", -- Suffix to search with "next" method
                 },
@@ -92,17 +84,17 @@ return {
             require("cool-substitute").setup({
                 setup_keybindings = true,
                 mappings = {
-                    start = "gm", -- Mark word / region
+                    start = "gm",         -- Mark word / region
                     start_and_edit = "gM", -- Mark word / region and also edit
                     start_and_edit_word = "g!M", -- Mark word / region and also edit.  Edit only full word.
-                    start_word = "g!m", -- Mark word / region. Edit only full word
+                    start_word = "g!m",   -- Mark word / region. Edit only full word
                     apply_substitute_and_next = "M", -- Start substitution / Go to next substitution
                     apply_substitute_and_prev = "<C-b>", -- same as M but backwards
                     apply_substitute_all = "ga", -- Substitute all
                     force_terminate_substitute = "g!!", -- Terminate macro (if some bug happens)
                     terminate_substitute = "<esc>", -- Terminate macro
                     skip_substitute = "n", -- Skip this occurrence
-                    goto_next = "<C-j>", -- Go to next occurence
+                    goto_next = "<C-j>",  -- Go to next occurence
                     goto_previous = "<C-k>", -- Go to previous occurrence
                 },
                 -- reg_char = 'o', -- letter to save macro (Dont use number or uppercase here)

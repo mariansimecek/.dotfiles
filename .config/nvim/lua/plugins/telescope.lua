@@ -78,5 +78,6 @@ return {
 
         -- change matched highlight color
         vim.cmd("highlight TelescopeMatching guifg=#fabd2f")
+        vim.cmd("highlight TelescopeSelection guibg=#303030")
     end,
 }
