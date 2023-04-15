@@ -1,4 +1,4 @@
- # Fig pre block. Keep at the top of this file.
+# Fig pre block. Keep at the top of this file.
 # [[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -114,12 +114,13 @@ alias luamake=/luamake
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-
 # PATHs
 export PATH=$PATH:~/.scripts
+export PATH=$PATH:/opt/zig
 export PATH=$PATH:~/.local/bin
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$HOME/go/bin
+export PATH=$PATH:$HOME/.cargo/bin
 export PATH=$PATH:/home/marian-simecek/.local/share/bob/nvim-bin
 export PATH=$PATH:/home/marian-simecek/.deno/bin
 export PATH=$PATH:/home/marian-simecek/.dotnet/
