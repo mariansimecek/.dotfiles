@@ -119,6 +119,7 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 export PATH=$PATH:~/.scripts
 export PATH=$PATH:~/.local/bin
 export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:$HOME/go/bin
 export PATH=$PATH:/home/marian-simecek/.local/share/bob/nvim-bin
 export PATH=$PATH:/home/marian-simecek/.deno/bin
 export PATH=$PATH:/home/marian-simecek/.dotnet/
