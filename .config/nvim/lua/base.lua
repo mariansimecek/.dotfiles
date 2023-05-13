@@ -89,9 +89,9 @@ vim.opt.clipboard:append("unnamedplus") -- use system clipboard as default regis
 
 vim.opt.iskeyword:append("-") -- consider string-string as whole word
 
-vim.g.copilot_no_tab_map = true
-vim.g.copilot_assume_mapped = true
-vim.g.copilot_tab_fallback = ""
+-- vim.g.copilot_no_tab_map = true
+-- vim.g.copilot_assume_mapped = true
+-- vim.g.copilot_tab_fallback = ""
 
 vim.opt.updatetime = 50
 

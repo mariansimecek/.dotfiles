@@ -2,13 +2,12 @@ return {
     { "nvim-lua/plenary.nvim", lazy = true },
     -- "nyoom-engineering/oxocarbon.nvim",
     {
-        "razcoen/fleet.nvim",
+"Alexis12119/nightly.nvim",
         config = function()
-            vim.cmd.colorscheme 'fleet'
+            vim.cmd.colorscheme("nightly")
         end,
     },
     -- Git plugins
-
     "tpope/vim-fugitive",
     {
         "sindrets/diffview.nvim",

@@ -24,7 +24,8 @@ return {
             "hrsh7th/cmp-path", -- source for file system paths
             "saadparwaiz1/cmp_luasnip", -- for autocompletion
             "rambhosale/cmp-bootstrap.nvim",
-            "zbirenbaum/copilot.lua",
+            "onsails/lspkind-nvim",
+            -- "zbirenbaum/copilot.lua",
         },
         config = function()
             vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
@@ -82,13 +83,13 @@ return {
                             vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind)
                             -- Source
                             vim_item.menu = ({
-                                    buffer = "[Buf]",
-                                    nvim_lsp = "[LSP]",
-                                    luasnip = "[LuaSnip]",
-                                    nvim_lua = "[API]",
-                                    cmp_tabnine = "[Tabnine]",
-                                    path = "[Path]",
-                                })[entry.source.name]
+                                buffer = "[Buf]",
+                                nvim_lsp = "[LSP]",
+                                luasnip = "[LuaSnip]",
+                                nvim_lua = "[API]",
+                                cmp_tabnine = "[Tabnine]",
+                                path = "[Path]",
+                            })[entry.source.name]
                             return vim_item
                         end,
                     }),
@@ -96,7 +97,7 @@ return {
                 mapping = {
                     ["<C-p>"] = cmp.mapping.select_prev_item(),
                     ["<C-n>"] = cmp.mapping.select_next_item(),
-                    ["<C-d>"] = cmp.mapping.scroll_docs( -4),
+                    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
                     ["<C-f>"] = cmp.mapping.scroll_docs(4),
                     ["<C-Space>"] = cmp.mapping.complete(),
                     ["<C-e>"] = cmp.mapping.close(),
@@ -122,7 +123,7 @@ return {
                     ["<S-Tab>"] = cmp.mapping(function(fallback)
                         if cmp.visible() then
                             cmp.select_prev_item()
-                        elseif require("luasnip").jumpable( -1) then
+                        elseif require("luasnip").jumpable(-1) then
                             vim.fn.feedkeys(
                                 vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true),
                                 ""
@@ -136,33 +137,33 @@ return {
                     }),
                 },
                 sources = {
-                    { name = "copilot" },
                     { name = "nvim_lsp" },
+                    -- { name = "copilot" },
                     -- { name = 'cmp_bootstrap' },
                     { name = "luasnip" },
-                    -- { name = "buffer" },
                     { name = "nvim_lua" },
                     { name = "path" },
+                    { name = "buffer" },
                 },
             })
         end,
     },
-    {
-        "zbirenbaum/copilot.lua",
-        event = "VimEnter",
-        config = function()
-            vim.defer_fn(function()
-                require("copilot").setup()
-            end, 100)
-        end,
-        dependencies = {
-            "onsails/lspkind-nvim",
-            {
-                "zbirenbaum/copilot-cmp",
-                config = function()
-                    require("copilot_cmp").setup()
-                end,
-            },
-        },
-    },
+    -- {
+    --     "zbirenbaum/copilot.lua",
+    --     event = "VimEnter",
+    --     config = function()
+    --         vim.defer_fn(function()
+    --             require("copilot").setup()
+    --         end, 100)
+    --     end,
+    --     dependencies = {
+    --         "onsails/lspkind-nvim",
+    --         {
+    --             "zbirenbaum/copilot-cmp",
+    --             config = function()
+    --                 require("copilot_cmp").setup()
+    --             end,
+    --         },
+    --     },
+    -- },
 }
