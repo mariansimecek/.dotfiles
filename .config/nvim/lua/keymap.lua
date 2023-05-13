@@ -99,17 +99,17 @@ vim.keymap.set({ "n", "v" }, "ge", "G")
 vim.keymap.set({ "n", "v" }, "gh", "0")
 
 -- delete single char
-vim.keymap.set("n", "d", "vd")
+-- vim.keymap.set("n", "d", "vd")
 
 --not working with cool substitute
 -- vim.keymap.set("n", "c", "vc")
 
 -- select line
-vim.keymap.set("n", "x", "V")
-vim.keymap.set("v", "x", "j")
-vim.keymap.set("v", "X", "k")
+-- vim.keymap.set("n", "x", "V")
+-- vim.keymap.set("v", "x", "j")
+-- vim.keymap.set("v", "X", "k")
 vim.keymap.set("n", "U", "<C-r>")
-vim.keymap.set("v", ";", "<Esc>")
-
-vim.keymap.set("n", "ma", "va")
-vim.keymap.set("n", "mi", "vi")
+-- vim.keymap.set("v", ";", "<Esc>")
+--
+-- vim.keymap.set("n", "ma", "va")
+-- vim.keymap.set("n", "mi", "vi")
