@@ -16,6 +16,10 @@ vim.keymap.set("v", "<leader>w", "<Esc>:w<CR>gv", { desc = "Save file" })
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
+-- quifix next prev
+vim.keymap.set("n", "<leader>j", ":cn<CR>")
+vim.keymap.set("n", "<leader>k", ":cp<CR>")
+
 -- support moving in edit mode
 vim.keymap.set("i", "<C-k>", "<Up>")
 vim.keymap.set("i", "<C-j>", "<Down>")

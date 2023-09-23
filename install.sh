@@ -1,12 +1,12 @@
 #!/bin/bash
 
-# sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-# curl -sS https://starship.rs/install.sh | sh
+curl -sS https://starship.rs/install.sh | sh
 
 
-# sudo lchsh $USER # /bin/zsh
-# curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+sudo lchsh $USER # /bin/zsh
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
 
 # Create a symbolic link from ~/.dotfiles to ~/.zshrc
 ln -sf $(pwd)/zsh/.zshrc ~/.zshrc

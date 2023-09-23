@@ -85,6 +85,7 @@ source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
  export LANG=en_US.UTF-8
+ export EDITOR='hx'
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -137,6 +138,10 @@ alias devWin="cd /mnt/c/dev/"
 alias ide="/root/scripts/open-dev-tmux"
 alias dotfiles="cd ~/.dotfiles"
 alias gs="git status"
+alias lg='lazygit'
+alias wezterm='flatpak run org.wezfurlong.wezterm'
+alias code='flatpak run com.visualstudio.code'
+
 function proj() {
   cd "$(find ~/dev -type d -name .git -exec dirname {} \; 2>/dev/null  | (sleep 0.5; fzf --preview 'ls -la {}'))"
 }
@@ -168,3 +173,5 @@ eval "$(zoxide init zsh)"
 
 # Fig post block. Keep at the bottom of this file.
 # [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
+
+source /home/marian-simecek/.config/broot/launcher/bash/br

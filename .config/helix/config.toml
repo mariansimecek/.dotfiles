@@ -12,7 +12,7 @@ insert = "bar"
 
 [editor.lsp]
 display-messages = true
-display-inlay-hints = true
+# display-inlay-hints = true
 
 [keys.normal]
 X = "extend_line_above"
@@ -25,10 +25,16 @@ C-f = [":new", ":insert-output lf-pick", "select_all", "split_selection_on_newli
 q = ":quit"
 w = ":write"
 m = ":format"
-
+M = ":sh prettier --write ."
 
 [keys.insert]
 C-h = "move_char_left"
 C-j = "move_line_down"
 C-k = "move_line_up"
 C-l = "move_char_right"
+
+[keys.normal.space.";"]
+g = ":sh zellij action new-tab -l lg"
+s = ":sh zellij run -fc -- lazygit"
+
+
