@@ -1,6 +1,7 @@
 {
     "diagnostics.disable": [
-        "missing-parameter"
+        "missing-parameter",
+        "missing-fields"
     ],
     "diagnostics.globals": [
         "root_dir"

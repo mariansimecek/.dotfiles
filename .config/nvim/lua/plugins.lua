@@ -1,26 +1,20 @@
 return {
     { "nvim-lua/plenary.nvim", lazy = true },
-    -- "nyoom-engineering/oxocarbon.nvim",
+    -- {
+    --     "nyoom-engineering/oxocarbon.nvim",
+    --     config = function()
+    --         vim.cmd.colorscheme("oxocarbon")
+    --     end,
+    -- },
     {
-        "Alexis12119/nightly.nvim",
+        "felipeagc/fleet-theme-nvim",
         config = function()
-            vim.cmd.colorscheme("nightly")
+            vim.cmd("colorscheme fleet")
         end,
     },
+
     -- Git plugins
     "tpope/vim-fugitive",
-    {
-        "sindrets/diffview.nvim",
-        cmd = "DiffviewOpen",
-        opts = {
-            view = {
-                merge_tool = {
-                    layout = "diff3_mixed",
-                },
-            },
-        },
-    },
-
     {
         "numToStr/Comment.nvim",
         dependencies = "JoosepAlviste/nvim-ts-context-commentstring",
@@ -73,38 +67,54 @@ return {
             require("nvim-highlight-colors").setup({
                 render = "background", -- or 'foreground' or 'first_column'
                 enable_named_colors = true,
-                enable_tailwind = false,
+                enable_tailwind = true,
             })
         end,
     },
+    -- {
+    --     "otavioschwanck/cool-substitute.nvim",
+    --     config = function()
+    --         require("cool-substitute").setup({
+    --             setup_keybindings = true,
+    --             mappings = {
+    --                 start = "gm", -- Mark word / region
+    --                 start_and_edit = "gM", -- Mark word / region and also edit
+    --                 start_and_edit_word = "g!M", -- Mark word / region and also edit.  Edit only full word.
+    --                 start_word = "g!m", -- Mark word / region. Edit only full word
+    --                 apply_substitute_and_next = "M", -- Start substitution / Go to next substitution
+    --                 apply_substitute_and_prev = "<C-b>", -- same as M but backwards
+    --                 apply_substitute_all = "ga", -- Substitute all
+    --                 force_terminate_substitute = "g!!", -- Terminate macro (if some bug happens)
+    --                 terminate_substitute = "<esc>", -- Terminate macro
+    --                 skip_substitute = "n", -- Skip this occurrence
+    --                 goto_next = "<C-j>", -- Go to next occurence
+    --                 goto_previous = "<C-k>", -- Go to previous occurrence
+    --             },
+    --             -- reg_char = 'o', -- letter to save macro (Dont use number or uppercase here)
+    --             -- mark_char = 't', -- mark the position at start of macro
+    --             -- writing_substitution_color = "#ECBE7B", -- for status line
+    --             -- applying_substitution_color = "#98be65", -- for status line
+    --             -- edit_word_when_starting_with_substitute_key = true -- (press M to mark and
+    --         })
+    --     end,
+    -- },
     {
-        "otavioschwanck/cool-substitute.nvim",
-        config = function()
-            require("cool-substitute").setup({
-                setup_keybindings = true,
-                mappings = {
-                    start = "gm", -- Mark word / region
-                    start_and_edit = "gM", -- Mark word / region and also edit
-                    start_and_edit_word = "g!M", -- Mark word / region and also edit.  Edit only full word.
-                    start_word = "g!m", -- Mark word / region. Edit only full word
-                    apply_substitute_and_next = "M", -- Start substitution / Go to next substitution
-                    apply_substitute_and_prev = "<C-b>", -- same as M but backwards
-                    apply_substitute_all = "ga", -- Substitute all
-                    force_terminate_substitute = "g!!", -- Terminate macro (if some bug happens)
-                    terminate_substitute = "<esc>", -- Terminate macro
-                    skip_substitute = "n", -- Skip this occurrence
-                    goto_next = "<C-j>", -- Go to next occurence
-                    goto_previous = "<C-k>", -- Go to previous occurrence
-                },
-                -- reg_char = 'o', -- letter to save macro (Dont use number or uppercase here)
-                -- mark_char = 't', -- mark the position at start of macro
-                -- writing_substitution_color = "#ECBE7B", -- for status line
-                -- applying_substitution_color = "#98be65", -- for status line
-                -- edit_word_when_starting_with_substitute_key = true -- (press M to mark and
-            })
-        end,
+        "smoka7/multicursors.nvim",
+        event = "VeryLazy",
+        dependencies = {
+            "smoka7/hydra.nvim",
+        },
+        opts = {},
+        cmd = { "MCstart", "MCvisual", "MCclear", "MCpattern", "MCvisualPattern", "MCunderCursor" },
+        keys = {
+            {
+                mode = { "v", "n" },
+                "<Leader>n",
+                "<cmd>MCstart<cr>",
+                desc = "Create a selection for selected text or word under the cursor",
+            },
+        },
     },
-
     {
         "L3MON4D3/LuaSnip",
         dependencies = {
@@ -376,7 +386,11 @@ return {
             "mason.nvim",
             "williamboman/mason-lspconfig.nvim",
             "hrsh7th/cmp-nvim-lsp",
-            "jose-elias-alvarez/typescript.nvim",
+            {
+                "pmizio/typescript-tools.nvim",
+                dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+                opts = {},
+            },
             "Hoffs/omnisharp-extended-lsp.nvim",
         },
         config = function()
@@ -388,35 +402,29 @@ return {
 
             local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
             local lsp_attach = function(client, bufnr)
-                -- set keybinds
-                vim.keymap.set("n", "gr", "<cmd>Lspsaga lsp_finder<CR>", { desc = "LSP show [g]o [r]eferences" })
-                vim.keymap.set("n", "gf", "<cmd>Lspsaga lsp_finder<CR>", { desc = "LSP show [g]o [f]inder" })
-                vim.keymap.set("n", "gd", "<C-]>", { desc = "LSP show [g]o [d]efinition" })
+                vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover docs" })
+                vim.keymap.set("n", "gr", require('telescope.builtin').lsp_references, { desc = "LSP show [g]o [r]eferences" })
+                vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "LSP show [g]o [d]efinition" })
                 vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "LSP [g]o to [D]eclaration" })
                 vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { desc = "LSP [g]o to [i]mplementation" })
-                vim.keymap.set("n", "<leader>a", "<cmd>Lspsaga code_action<CR>", { desc = "Show [c]ode [a]ction" })
-                vim.keymap.set("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", { desc = "LSP [r]e[n]ame" })
-                vim.keymap.set(
-                    "n",
-                    "<leader>ld",
-                    "<cmd>Lspsaga show_line_diagnostics<CR>",
-                    { desc = "Show [l]ine [d]iagnostic" }
-                )
+                vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, { desc = "Show [c]ode [a]ction" })
+                vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "LSP [r]e[n]ame" })
+                vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, { desc = "Type [D]efinition" })
+                vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, { desc = "Signature Documentation" })
+                vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
+                vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
                 vim.keymap.set(
                     "n",
                     "<leader>d",
-                    "<cmd>Lspsaga show_cursor_diagnostics<CR>",
-                    { desc = "Show cursor [d]iagnostic" }
+                    vim.diagnostic.open_float,
+                    { desc = "Open floating diagnostic message" }
                 )
-                vim.keymap.set("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { desc = "Jump prev [d]iagnostic" })
-                vim.keymap.set("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", { desc = "Jump next [d]iagnostic" })
-                vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", { desc = "Hover docs" })
+                vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 
                 -- typescript specific keymaps (e.g. rename file and update imports)
                 if client.name == "tsserver" then
                     client.server_capabilities.documentFormattingProvider = false
                     client.server_capabilities.documentRangeFormattingProvider = false
-                    require("typescript").setup({})
                     vim.keymap.set(
                         "n",
                         "<leader>rf",
@@ -426,19 +434,25 @@ return {
                     vim.keymap.set(
                         "n",
                         "<leader>oi",
-                        ":TypescriptOrganizeImports<CR>",
+                        ":TSToolsOrganizeImports<CR>",
                         { desc = "Typescript [o]rganize [i]mports" }
                     )
                     vim.keymap.set(
                         "n",
                         "<leader>ru",
-                        ":TypescriptRemoveUnused<CR>",
+                        ":TSToolsRemoveUnused<CR>",
                         { desc = "Typescript [r]emove [u]nused" }
                     )
                     vim.keymap.set(
                         "n",
+                        "<leader>rui",
+                        ":TSToolsRemoveUnusedImports<CR>",
+                        { desc = "Typescript [r]emove [u]nused [i]mports" }
+                    )
+                    vim.keymap.set(
+                        "n",
                         "<leader>mi",
-                        ":TypescriptAddMissingImports<CR>",
+                        ":TSToolsAddMissingImports<CR>",
                         { desc = "Typsecript add [m]issing [i]mports" }
                     )
                 end
@@ -502,27 +516,27 @@ return {
             "williamboman/mason.nvim",
         },
     },
-    {
-        "glepnir/lspsaga.nvim",
-        config = function()
-            require("lspsaga").setup({
-                ui = {
-                    title = false,
-                    -- border = 'single',
-                    expand = "",
-                    collapse = "",
-                    preview = " ",
-                    code_action = " ",
-                    diagnostic = " ",
-                    incoming = "",
-                    outgoing = "",
-                },
-                symbol_in_winbar = {
-                    enable = false,
-                },
-            })
-        end,
-    },
+    -- {
+    --     "glepnir/lspsaga.nvim",
+    --     config = function()
+    --         require("lspsaga").setup({
+    --             ui = {
+    --                 title = false,
+    --                 -- border = 'single',
+    --                 expand = "",
+    --                 collapse = "",
+    --                 preview = " ",
+    --                 code_action = " ",
+    --                 diagnostic = " ",
+    --                 incoming = "",
+    --                 outgoing = "",
+    --             },
+    --             symbol_in_winbar = {
+    --                 enable = false,
+    --             },
+    --         })
+    --     end,
+    -- },
     {
         "nvim-lualine/lualine.nvim",
         config = function()
@@ -655,7 +669,6 @@ return {
     {
         "nvim-telescope/telescope.nvim",
         cmd = "Telescope",
-        tag = "0.1.1",
         config = function()
             local actions = require("telescope.actions")
 
@@ -733,7 +746,6 @@ return {
 
             -- change matched highlight color
             vim.cmd("highlight TelescopeMatching guifg=#fabd2f")
-            vim.cmd("highlight TelescopeSelection guibg=#303030")
         end,
     },
     {
@@ -830,7 +842,6 @@ return {
     {
         "00sapo/visual.nvim",
         event = "VeryLazy", -- this is for making sure our keymaps are applied after the others: we call the previous mapppings, but other plugins/configs usually not!
-
     },
     {
         "folke/which-key.nvim",
