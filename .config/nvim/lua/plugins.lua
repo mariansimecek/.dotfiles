@@ -1,17 +1,17 @@
 return {
     { "nvim-lua/plenary.nvim", lazy = true },
-    -- {
-    --     "nyoom-engineering/oxocarbon.nvim",
-    --     config = function()
-    --         vim.cmd.colorscheme("oxocarbon")
-    --     end,
-    -- },
     {
-        "felipeagc/fleet-theme-nvim",
+        "nyoom-engineering/oxocarbon.nvim",
         config = function()
-            vim.cmd("colorscheme fleet")
+            vim.cmd.colorscheme("oxocarbon")
         end,
     },
+    -- {
+    --     "felipeagc/fleet-theme-nvim",
+    --     config = function()
+    --         vim.cmd("colorscheme fleet")
+    --     end,
+    -- },
 
     -- Git plugins
     "tpope/vim-fugitive",
@@ -30,15 +30,15 @@ return {
         config = function()
             require("mini.surround").setup({
                 mappings = {
-                    add = "ms", -- Add surrounding in Normal and Visual modes
-                    delete = "md", -- Delete surrounding
-                    find = "mf", -- Find surrounding (to the right)
-                    replace = "mr", -- Replace surrounding
-                    find_left = "", -- Find surrounding (to the left)
-                    highlight = "", -- Highlight surrounding
+                    add = "ms",          -- Add surrounding in Normal and Visual modes
+                    delete = "md",       -- Delete surrounding
+                    find = "mf",         -- Find surrounding (to the right)
+                    replace = "mr",      -- Replace surrounding
+                    find_left = "",      -- Find surrounding (to the left)
+                    highlight = "",      -- Highlight surrounding
                     update_n_lines = "", -- Update `n_lines`
-                    suffix_last = "l", -- Suffix to search with "prev" method
-                    suffix_next = "n", -- Suffix to search with "next" method
+                    suffix_last = "l",   -- Suffix to search with "prev" method
+                    suffix_next = "n",   -- Suffix to search with "next" method
                 },
             })
         end,
@@ -135,9 +135,9 @@ return {
         version = false, -- last release is way too old
         event = "InsertEnter",
         dependencies = {
-            "hrsh7th/cmp-nvim-lsp", -- nvim-cmp source for neovim's built-in LSP
-            "hrsh7th/cmp-buffer", -- nvim-cmp source for buffer words
-            "hrsh7th/cmp-path", -- source for file system paths
+            "hrsh7th/cmp-nvim-lsp",     -- nvim-cmp source for neovim's built-in LSP
+            "hrsh7th/cmp-buffer",       -- nvim-cmp source for buffer words
+            "hrsh7th/cmp-path",         -- source for file system paths
             "saadparwaiz1/cmp_luasnip", -- for autocompletion
             "rambhosale/cmp-bootstrap.nvim",
             "onsails/lspkind-nvim",
@@ -187,7 +187,7 @@ return {
                 formatting = {
                     format = lspkind.cmp_format({
                         mode = "text_symbol", -- show only symbol annotations
-                        maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+                        maxwidth = 50,        -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
                         -- The function below will be called before any actual modifications from lspkind
                         -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
                         before = function(entry, vim_item)
@@ -316,8 +316,8 @@ return {
                     },
                 },
                 signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
-                numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
-                linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
+                numhl = false,     -- Toggle with `:Gitsigns toggle_numhl`
+                linehl = false,    -- Toggle with `:Gitsigns toggle_linehl`
                 word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
                 watch_gitdir = {
                     interval = 1000,
@@ -357,42 +357,35 @@ return {
     {
         "neovim/nvim-lspconfig",
         dependencies = {
+
+            { "folke/neodev.nvim", config = true },
+            {
+                "pmizio/typescript-tools.nvim",
+                opts = {
+
+                    expose_as_code_action = { "all" },
+                },
+            },
+            "williamboman/mason-lspconfig.nvim",
+            "hrsh7th/cmp-nvim-lsp",
+            "Hoffs/omnisharp-extended-lsp.nvim",
+            {
+                "williamboman/mason.nvim",
+                cmd = "Mason",
+                opts = {
+                    ensure_installed = {
+                        "stylua",
+                        "shellcheck",
+                    },
+                },
+            },
             {
                 "j-hui/fidget.nvim",
                 tag = "legacy",
-                opts = {
-                    text = { spinner = "dots" },
-                    sources = {
-                        ["null-ls"] = {
-                            ignore = true,
-                        },
-                    },
-                    -- fmt = {
-                    --     task = function(task_name, message, percentage)
-                    --         if task_name == "code_action" then
-                    --             return false
-                    --         end
-                    --         return string.format(
-                    --             "%s%s [%s]",
-                    --             message,
-                    --             percentage and string.format(" (%s%%)", percentage) or "",
-                    --             task_name
-                    --         )
-                    --     end,
-                    -- },
-                },
-            }, -- Lsp status notifications
-            { "folke/neodev.nvim", config = true },
-            "mason.nvim",
-            "williamboman/mason-lspconfig.nvim",
-            "hrsh7th/cmp-nvim-lsp",
-            {
-                "pmizio/typescript-tools.nvim",
-                dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-                opts = {},
+                event = "LspAttach",
             },
-            "Hoffs/omnisharp-extended-lsp.nvim",
         },
+
         config = function()
             require("mason-lspconfig").setup({
                 ensure_installed = {
@@ -403,7 +396,12 @@ return {
             local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
             local lsp_attach = function(client, bufnr)
                 vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover docs" })
-                vim.keymap.set("n", "gr", require('telescope.builtin').lsp_references, { desc = "LSP show [g]o [r]eferences" })
+                vim.keymap.set(
+                    "n",
+                    "gr",
+                    require("telescope.builtin").lsp_references,
+                    { desc = "LSP show [g]o [r]eferences" }
+                )
                 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "LSP show [g]o [d]efinition" })
                 vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "LSP [g]o to [D]eclaration" })
                 vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { desc = "LSP [g]o to [i]mplementation" })
@@ -476,16 +474,6 @@ return {
         end,
     },
     {
-        "williamboman/mason.nvim",
-        cmd = "Mason",
-        opts = {
-            ensure_installed = {
-                "stylua",
-                "shellcheck",
-            },
-        },
-    },
-    {
         "jose-elias-alvarez/null-ls.nvim",
         config = function()
             local null_ls = require("null-ls")
@@ -554,7 +542,7 @@ return {
                         {
                             "filename",
                             file_status = true, -- displays file status (readonly status, modified status)
-                            path = 0, -- 0 = just filename, 1 = relative path, 2 = absolute path
+                            path = 0,           -- 0 = just filename, 1 = relative path, 2 = absolute path
                         },
                     },
                     lualine_c = { "branch" },
@@ -581,7 +569,7 @@ return {
                         {
                             "filename",
                             file_status = true, -- displays file status (readonly status, modified status)
-                            path = 1, -- 0 = just filename, 1 = relative path, 2 = absolute path
+                            path = 1,           -- 0 = just filename, 1 = relative path, 2 = absolute path
                         },
                     },
                     lualine_x = { "location" },
