@@ -30,15 +30,15 @@ return {
         config = function()
             require("mini.surround").setup({
                 mappings = {
-                    add = "ms",          -- Add surrounding in Normal and Visual modes
-                    delete = "md",       -- Delete surrounding
-                    find = "mf",         -- Find surrounding (to the right)
-                    replace = "mr",      -- Replace surrounding
-                    find_left = "",      -- Find surrounding (to the left)
-                    highlight = "",      -- Highlight surrounding
+                    add = "ms", -- Add surrounding in Normal and Visual modes
+                    delete = "md", -- Delete surrounding
+                    find = "mf", -- Find surrounding (to the right)
+                    replace = "mr", -- Replace surrounding
+                    find_left = "", -- Find surrounding (to the left)
+                    highlight = "", -- Highlight surrounding
                     update_n_lines = "", -- Update `n_lines`
-                    suffix_last = "l",   -- Suffix to search with "prev" method
-                    suffix_next = "n",   -- Suffix to search with "next" method
+                    suffix_last = "l", -- Suffix to search with "prev" method
+                    suffix_next = "n", -- Suffix to search with "next" method
                 },
             })
         end,
@@ -135,9 +135,9 @@ return {
         version = false, -- last release is way too old
         event = "InsertEnter",
         dependencies = {
-            "hrsh7th/cmp-nvim-lsp",     -- nvim-cmp source for neovim's built-in LSP
-            "hrsh7th/cmp-buffer",       -- nvim-cmp source for buffer words
-            "hrsh7th/cmp-path",         -- source for file system paths
+            "hrsh7th/cmp-nvim-lsp", -- nvim-cmp source for neovim's built-in LSP
+            "hrsh7th/cmp-buffer", -- nvim-cmp source for buffer words
+            "hrsh7th/cmp-path", -- source for file system paths
             "saadparwaiz1/cmp_luasnip", -- for autocompletion
             "rambhosale/cmp-bootstrap.nvim",
             "onsails/lspkind-nvim",
@@ -187,7 +187,7 @@ return {
                 formatting = {
                     format = lspkind.cmp_format({
                         mode = "text_symbol", -- show only symbol annotations
-                        maxwidth = 50,        -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+                        maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
                         -- The function below will be called before any actual modifications from lspkind
                         -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
                         before = function(entry, vim_item)
@@ -316,8 +316,8 @@ return {
                     },
                 },
                 signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
-                numhl = false,     -- Toggle with `:Gitsigns toggle_numhl`
-                linehl = false,    -- Toggle with `:Gitsigns toggle_linehl`
+                numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
+                linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
                 word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
                 watch_gitdir = {
                     interval = 1000,
@@ -363,11 +363,6 @@ return {
                 event = "LspAttach",
                 opts = {
                     text = { spinner = "dots" },
-                    sources = {
-                        ["null-ls"] = {
-                            ignore = true,
-                        },
-                    },
                 },
             },
 
@@ -376,6 +371,38 @@ return {
                 "pmizio/typescript-tools.nvim",
                 opts = {
                     expose_as_code_action = "all",
+                    on_attach = function()
+                        vim.keymap.set(
+                            "n",
+                            "<leader>rf",
+                            ":TypecriptRenameFile<CR>",
+                            { desc = "Typescript [r]ename [f]ile" }
+                        )
+                        vim.keymap.set(
+                            "n",
+                            "<leader>oi",
+                            ":TSToolsOrganizeImports<CR>",
+                            { desc = "Typescript [o]rganize [i]mports" }
+                        )
+                        vim.keymap.set(
+                            "n",
+                            "<leader>ru",
+                            ":TSToolsRemoveUnused<CR>",
+                            { desc = "Typescript [r]emove [u]nused" }
+                        )
+                        vim.keymap.set(
+                            "n",
+                            "<leader>rui",
+                            ":TSToolsRemoveUnusedImports<CR>",
+                            { desc = "Typescript [r]emove [u]nused [i]mports" }
+                        )
+                        vim.keymap.set(
+                            "n",
+                            "<leader>mi",
+                            ":TSToolsAddMissingImports<CR>",
+                            { desc = "Typsecript add [m]issing [i]mports" }
+                        )
+                    end,
                 },
             },
             "williamboman/mason-lspconfig.nvim",
@@ -392,142 +419,77 @@ return {
                 },
             },
         },
+    },
 
+    {
+        "stevearc/conform.nvim",
+        event = { "BufReadPre", "BufNewFile" },
         config = function()
-            require("mason-lspconfig").setup({})
+            local conform = require("conform")
 
-            local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
-            local lsp_attach = function(client, bufnr)
-                vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover docs" })
-                vim.keymap.set(
-                    "n",
-                    "gr",
-                    require("telescope.builtin").lsp_references,
-                    { desc = "LSP show [g]o [r]eferences" }
-                )
-                vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "LSP show [g]o [d]efinition" })
-                vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "LSP [g]o to [D]eclaration" })
-                vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { desc = "LSP [g]o to [i]mplementation" })
-                vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, { desc = "Show [c]ode [a]ction" })
-                vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "LSP [r]e[n]ame" })
-                vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, { desc = "Type [D]efinition" })
-                vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, { desc = "Signature Documentation" })
-                vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
-                vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
-                vim.keymap.set(
-                    "n",
-                    "<leader>d",
-                    vim.diagnostic.open_float,
-                    { desc = "Open floating diagnostic message" }
-                )
-                vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
-
-                -- typescript specific keymaps (e.g. rename file and update imports)
-                if client.name == "tsserver" then
-                    client.server_capabilities.documentFormattingProvider = false
-                    client.server_capabilities.documentRangeFormattingProvider = false
-                    vim.keymap.set(
-                        "n",
-                        "<leader>rf",
-                        ":TypecriptRenameFile<CR>",
-                        { desc = "Typescript [r]ename [f]ile" }
-                    )
-                    vim.keymap.set(
-                        "n",
-                        "<leader>oi",
-                        ":TSToolsOrganizeImports<CR>",
-                        { desc = "Typescript [o]rganize [i]mports" }
-                    )
-                    vim.keymap.set(
-                        "n",
-                        "<leader>ru",
-                        ":TSToolsRemoveUnused<CR>",
-                        { desc = "Typescript [r]emove [u]nused" }
-                    )
-                    vim.keymap.set(
-                        "n",
-                        "<leader>rui",
-                        ":TSToolsRemoveUnusedImports<CR>",
-                        { desc = "Typescript [r]emove [u]nused [i]mports" }
-                    )
-                    vim.keymap.set(
-                        "n",
-                        "<leader>mi",
-                        ":TSToolsAddMissingImports<CR>",
-                        { desc = "Typsecript add [m]issing [i]mports" }
-                    )
-                end
-                -- csharp specific
-                if client.name == "omnisharp" or client.name == "omnisharp_mono" then
-                    vim.keymap.set("n", "gd", function()
-                        require("omnisharp_extended").telescope_lsp_definitions()
-                    end, { desc = "LSP show [g]o [d]efinition - c#" })
-                end
-            end
-
-            local lspconfig = require("lspconfig")
-            require("mason-lspconfig").setup_handlers({
-                function(server_name)
-                    lspconfig[server_name].setup({
-                        on_attach = lsp_attach,
-                        capabilities = lsp_capabilities,
-                    })
-                end,
+            conform.setup({
+                formatters_by_ft = {
+                    javascript = { "prettier" },
+                    typescript = { "prettier" },
+                    javascriptreact = { "prettier" },
+                    typescriptreact = { "prettier" },
+                    svelte = { "prettier" },
+                    css = { "prettier" },
+                    html = { "prettier" },
+                    json = { "prettier" },
+                    yaml = { "prettier" },
+                    markdown = { "prettier" },
+                    graphql = { "prettier" },
+                    lua = { "stylua" },
+                    python = { "isort", "black" },
+                },
+                format_on_save = {
+                    lsp_fallback = true,
+                    async = true,
+                },
             })
+
+            vim.keymap.set({ "n", "v" }, "<leader>m", function()
+                conform.format({
+                    lsp_fallback = true,
+                    async = false,
+                    timeout_ms = 1000,
+                })
+            end, { desc = "Format file or range (in visual mode)" })
         end,
     },
     {
-        "jose-elias-alvarez/null-ls.nvim",
+        "mfussenegger/nvim-lint",
+        event = {
+            "BufReadPre",
+            "BufNewFile",
+        },
         config = function()
-            local null_ls = require("null-ls")
-            null_ls.setup({
-                sources = {
-                    -- require("typescript.extensions.null-ls.code-actions"),
-                    null_ls.builtins.formatting.prettier,
-                    null_ls.builtins.formatting.stylua,
-                    null_ls.builtins.formatting.csharpier,
-                    null_ls.builtins.diagnostics.eslint_d,
-                    null_ls.builtins.code_actions.eslint_d,
-                    null_ls.builtins.completion.spell,
-                },
+            local lint = require("lint")
+
+            lint.linters_by_ft = {
+                javascript = { "eslint_d" },
+                typescript = { "eslint_d" },
+                javascriptreact = { "eslint_d" },
+                typescriptreact = { "eslint_d" },
+                svelte = { "eslint_d" },
+                python = { "pylint" },
+            }
+
+            local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
+
+            vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
+                group = lint_augroup,
+                callback = function()
+                    lint.try_lint()
+                end,
             })
 
-            require("mason-null-ls").setup({
-                ensure_installed = {
-                    "prettier",
-                    "stylua",
-                    "eslint_d",
-                },
-                automatic_installation = true,
-                automatic_setup = true,
-            })
+            vim.keymap.set("n", "<leader>l", function()
+                lint.try_lint()
+            end, { desc = "Trigger linting for current file" })
         end,
-        dependencies = {
-            "jayp0521/mason-null-ls.nvim",
-            "williamboman/mason.nvim",
-        },
     },
-    -- {
-    --     "glepnir/lspsaga.nvim",
-    --     config = function()
-    --         require("lspsaga").setup({
-    --             ui = {
-    --                 title = false,
-    --                 -- border = 'single',
-    --                 expand = "",
-    --                 collapse = "",
-    --                 preview = " ",
-    --                 code_action = " ",
-    --                 diagnostic = " ",
-    --                 incoming = "",
-    --                 outgoing = "",
-    --             },
-    --             symbol_in_winbar = {
-    --                 enable = false,
-    --             },
-    --         })
-    --     end,
-    -- },
     {
         "nvim-lualine/lualine.nvim",
         config = function()
@@ -545,7 +507,7 @@ return {
                         {
                             "filename",
                             file_status = true, -- displays file status (readonly status, modified status)
-                            path = 0,           -- 0 = just filename, 1 = relative path, 2 = absolute path
+                            path = 0, -- 0 = just filename, 1 = relative path, 2 = absolute path
                         },
                     },
                     lualine_c = { "branch" },
@@ -553,12 +515,6 @@ return {
                         {
                             "diagnostics",
                             sources = { "nvim_diagnostic" },
-                            symbols = {
-                                error = " ",
-                                warn = " ",
-                                info = " ",
-                                hint = " ",
-                            },
                         },
                         "filetype",
                     },
@@ -572,7 +528,7 @@ return {
                         {
                             "filename",
                             file_status = true, -- displays file status (readonly status, modified status)
-                            path = 1,           -- 0 = just filename, 1 = relative path, 2 = absolute path
+                            path = 1, -- 0 = just filename, 1 = relative path, 2 = absolute path
                         },
                     },
                     lualine_x = { "location" },

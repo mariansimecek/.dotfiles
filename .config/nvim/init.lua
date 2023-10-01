@@ -58,7 +58,7 @@ vim.cmd([[let &t_Ce = "\e[4:0m"]])
 vim.opt.ignorecase = true -- Case insensitive searching UNLESS /C or capital in search
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
-vim.opt.smartcase = true      -- Don't ignore case with capitals
+vim.opt.smartcase = true -- Don't ignore case with capitals
 vim.opt.path:append({ "**" }) -- Finding files - Search down into subfolders
 vim.opt.wildignore:append({ "*/node_modules/*" })
 
@@ -88,7 +88,7 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 -- clipboard
 vim.opt.clipboard:append("unnamedplus") -- use system clipboard as default register
 
-vim.opt.iskeyword:append("-")           -- consider string-string as whole word
+vim.opt.iskeyword:append("-") -- consider string-string as whole word
 
 -- vim.g.copilot_no_tab_map = true
 -- vim.g.copilot_assume_mapped = true
@@ -156,19 +156,20 @@ vim.keymap.set("n", "<leader>D", ":Telescope diagnostics<CR>")
 vim.keymap.set("n", "<leader>fh", ":Telescope help_tags<CR>")
 vim.keymap.set("n", "<leader>sk", ":Telescope keymaps<CR>")
 
-vim.keymap.set("n", "<leader>m", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>", { silent = true })
-vim.keymap.set("v", "<leader>m", function()
-    local start_row, _ = table.unpack(vim.api.nvim_buf_get_mark(0, "<"))
-    local end_row, _ = table.unpack(vim.api.nvim_buf_get_mark(0, ">"))
-
-    vim.lsp.buf.format({
-        range = {
-            ["start"] = { start_row, 0 },
-            ["end"] = { end_row, 0 },
-        },
-        async = true,
-    })
-end, { silent = true })
+-- LSP
+vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover docs" })
+vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "LSP show [g]o [r]eferences" })
+vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "LSP show [g]o [d]efinition" })
+vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "LSP [g]o to [D]eclaration" })
+vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { desc = "LSP [g]o to [i]mplementation" })
+vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, { desc = "Show [c]ode [a]ction" })
+vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "LSP [r]e[n]ame" })
+vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, { desc = "Type [D]efinition" })
+vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, { desc = "Signature Documentation" })
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
+vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
+vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 
 -- Spell toggle
 vim.keymap.set("n", "<leader>ss", ":setlocal spell!<CR>", { desc = "Toggle spell" })
@@ -183,8 +184,6 @@ vim.keymap.set(
 )
 
 vim.keymap.set("n", "<leader>gs", vim.cmd.Git, { desc = "Git status" })
-
-vim.keymap.set("n", "<leader>l", ":Lazy<CR>")
 
 -- Helix keybinds
 vim.keymap.set({ "n", "v" }, "gs", "^")
@@ -229,15 +228,4 @@ local function openConfig()
     vim.cmd("cd " .. configPath)
 end
 
-local setPwdfromActualFile = function()
-    vim.cmd("cd %:p:h")
-end
-
-local setPwdFromGitRoot = function()
-    vim.cmd("cd " .. vim.fn.system("git rev-parse --show-toplevel"))
-end
-
 vim.api.nvim_create_user_command("Config", openConfig, {})
-
-vim.api.nvim_create_user_command("SetFilePwd", setPwdfromActualFile, {})
-vim.api.nvim_create_user_command("SetGitPwd", setPwdFromGitRoot, {})
