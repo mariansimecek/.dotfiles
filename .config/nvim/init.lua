@@ -1,14 +1,15 @@
 vim.cmd("autocmd!")
+vim.g.mapleader = " "
 
 local ag = vim.api.nvim_create_augroup
 local au = vim.api.nvim_create_autocmd
 
 au("TextYankPost", {
-  group = ag("yank_highlight", {}),
-  pattern = "*",
-  callback = function()
-    vim.highlight.on_yank({ higroup = "IncSearch", timeout = 300 })
-  end,
+    group = ag("yank_highlight", {}),
+    pattern = "*",
+    callback = function()
+        vim.highlight.on_yank({ higroup = "IncSearch", timeout = 300 })
+    end,
 })
 
 vim.g.loaded_netrw = 1
@@ -57,7 +58,7 @@ vim.cmd([[let &t_Ce = "\e[4:0m"]])
 vim.opt.ignorecase = true -- Case insensitive searching UNLESS /C or capital in search
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
-vim.opt.smartcase = true -- Don't ignore case with capitals
+vim.opt.smartcase = true      -- Don't ignore case with capitals
 vim.opt.path:append({ "**" }) -- Finding files - Search down into subfolders
 vim.opt.wildignore:append({ "*/node_modules/*" })
 
@@ -80,14 +81,14 @@ vim.opt.backspace = { "start", "eol", "indent" }
 
 -- Turn off paste mode when leaving insert
 vim.api.nvim_create_autocmd("InsertLeave", {
-  pattern = "*",
-  command = "set nopaste",
+    pattern = "*",
+    command = "set nopaste",
 })
 
 -- clipboard
 vim.opt.clipboard:append("unnamedplus") -- use system clipboard as default register
 
-vim.opt.iskeyword:append("-") -- consider string-string as whole word
+vim.opt.iskeyword:append("-")           -- consider string-string as whole word
 
 -- vim.g.copilot_no_tab_map = true
 -- vim.g.copilot_assume_mapped = true
@@ -97,18 +98,15 @@ vim.opt.updatetime = 50
 
 -- vim.cmd([[highlight IndentBlanklineChar guifg=#3c3836]])
 
-vim.cmd([[
-sign define DiagnosticSignError text= texthl=DiagnosticSignError linehl= numhl=
-sign define DiagnosticSignWarn text= texthl=DiagnosticSignWarn linehl= numhl=
-sign define DiagnosticSignInfo text= texthl=DiagnosticSignInfo linehl= numhl=
-sign define DiagnosticSignHint text= texthl=DiagnosticSignHint linehl= numhl=]])
+-- vim.cmd([[
+-- sign define DiagnosticSignError text= texthl=DiagnosticSignError linehl= numhl=
+-- sign define DiagnosticSignWarn text= texthl=DiagnosticSignWarn linehl= numhl=
+-- sign define DiagnosticSignInfo text= texthl=DiagnosticSignInfo linehl= numhl=
+-- sign define DiagnosticSignHint text= texthl=DiagnosticSignHint linehl= numhl=]])
 
 -- custom vim.keymap settings
-vim.g.mapleader = " "
 
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
-
-vim.keymap.set("n", "<leader>so", ":%so<CR>", { desc = "Source file" })
 
 -- clear search highlights
 vim.keymap.set("n", "<Esc>", ":nohl<CR>")
@@ -122,24 +120,14 @@ vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = tr
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- quifix next prev
-vim.keymap.set("n", "<leader>j", ":cn<CR>")
-vim.keymap.set("n", "<leader>k", ":cp<CR>")
+vim.keymap.set("n", "<C-J>", ":cn<CR>")
+vim.keymap.set("n", "<C-K>", ":cp<CR>")
 
 -- support moving in edit mode
 vim.keymap.set("i", "<C-k>", "<Up>")
 vim.keymap.set("i", "<C-j>", "<Down>")
 vim.keymap.set("i", "<C-h>", "<Left>")
 vim.keymap.set("i", "<C-l>", "<Right>")
--- Disable arrow keys
-vim.keymap.set("n", "<Up>", "<Nop>")
-vim.keymap.set("n", "<Down>", "<Nop>")
-vim.keymap.set("n", "<Left>", "<Nop>")
-vim.keymap.set("n", "<Right>", "<Nop>")
-
-vim.keymap.set("i", "<Up>", "<Nop>")
-vim.keymap.set("i", "<Down>", "<Nop>")
-vim.keymap.set("i", "<Left>", "<Nop>")
-vim.keymap.set("i", "<Right>", "<Nop>")
 
 -- disable adding char to buffer
 vim.keymap.set("n", "x", '"_x')
@@ -153,12 +141,6 @@ vim.keymap.set("n", "<C-j>", "<C-w>j")
 vim.keymap.set("n", "<C-k>", "<C-w>k")
 
 vim.keymap.set("n", "<C-n>", ":NvimTreeToggle<CR>")
--- DAP
-vim.keymap.set("n", "<leader>gb", ":lua require'dap'.toggle_breakpoint()<CR>")
-vim.keymap.set("n", "<leader>gB", ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>")
-vim.keymap.set("n", "<leader>gh", ":lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>")
-vim.keymap.set("n", "<leader>gl", ":lua require'dapui'.toggle()<CR>")
---
 
 -- Telescope
 -- TODO: add desc
@@ -174,16 +156,19 @@ vim.keymap.set("n", "<leader>D", ":Telescope diagnostics<CR>")
 vim.keymap.set("n", "<leader>fh", ":Telescope help_tags<CR>")
 vim.keymap.set("n", "<leader>sk", ":Telescope keymaps<CR>")
 
-local function format()
-  vim.lsp.buf.format({
-    filter = function(client)
-      return client.name ~= "tsserver"
-    end,
-    timeout_ms = 2000,
-  })
-end
--- Format
-vim.keymap.set({ "n", "v" }, "<leader>m", format, { desc = "Format file" })
+vim.keymap.set("n", "<leader>m", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>", { silent = true })
+vim.keymap.set("v", "<leader>m", function()
+    local start_row, _ = table.unpack(vim.api.nvim_buf_get_mark(0, "<"))
+    local end_row, _ = table.unpack(vim.api.nvim_buf_get_mark(0, ">"))
+
+    vim.lsp.buf.format({
+        range = {
+            ["start"] = { start_row, 0 },
+            ["end"] = { end_row, 0 },
+        },
+        async = true,
+    })
+end, { silent = true })
 
 -- Spell toggle
 vim.keymap.set("n", "<leader>ss", ":setlocal spell!<CR>", { desc = "Toggle spell" })
@@ -191,10 +176,10 @@ vim.keymap.set("n", "<leader>ss", ":setlocal spell!<CR>", { desc = "Toggle spell
 -- Search and replace
 vim.keymap.set("n", "<leader>rs", ":%s///gc<Left><Left><Left><Left>", { desc = "Native search and replace" })
 vim.keymap.set(
-  "v",
-  "<leader>rs",
-  ":s///gc<Left><Left><Left><Left>",
-  { desc = "Native search and replace in selection" }
+    "v",
+    "<leader>rs",
+    ":s///gc<Left><Left><Left><Left>",
+    { desc = "Native search and replace in selection" }
 )
 
 vim.keymap.set("n", "<leader>gs", vim.cmd.Git, { desc = "Git status" })
@@ -225,31 +210,31 @@ vim.keymap.set("n", "U", "<C-r>")
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable", -- latest stable release
+        lazypath,
+    })
 end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins")
 
 local function openConfig()
-  local configPath = vim.fn.stdpath("config")
-  vim.cmd("edit " .. configPath .. "/init.lua")
-  vim.cmd("cd " .. configPath)
+    local configPath = vim.fn.stdpath("config")
+    vim.cmd("edit " .. configPath .. "/init.lua")
+    vim.cmd("cd " .. configPath)
 end
 
 local setPwdfromActualFile = function()
-  vim.cmd("cd %:p:h")
+    vim.cmd("cd %:p:h")
 end
 
 local setPwdFromGitRoot = function()
-  vim.cmd("cd " .. vim.fn.system("git rev-parse --show-toplevel"))
+    vim.cmd("cd " .. vim.fn.system("git rev-parse --show-toplevel"))
 end
 
 vim.api.nvim_create_user_command("Config", openConfig, {})

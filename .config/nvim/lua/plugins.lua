@@ -357,13 +357,25 @@ return {
     {
         "neovim/nvim-lspconfig",
         dependencies = {
+            {
+                "j-hui/fidget.nvim",
+                tag = "legacy",
+                event = "LspAttach",
+                opts = {
+                    text = { spinner = "dots" },
+                    sources = {
+                        ["null-ls"] = {
+                            ignore = true,
+                        },
+                    },
+                },
+            },
 
             { "folke/neodev.nvim", config = true },
             {
                 "pmizio/typescript-tools.nvim",
                 opts = {
-
-                    expose_as_code_action = { "all" },
+                    expose_as_code_action = "all",
                 },
             },
             "williamboman/mason-lspconfig.nvim",
@@ -379,19 +391,10 @@ return {
                     },
                 },
             },
-            {
-                "j-hui/fidget.nvim",
-                tag = "legacy",
-                event = "LspAttach",
-            },
         },
 
         config = function()
-            require("mason-lspconfig").setup({
-                ensure_installed = {
-                    "tsserver",
-                },
-            })
+            require("mason-lspconfig").setup({})
 
             local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
             local lsp_attach = function(client, bufnr)
