@@ -140,7 +140,6 @@ alias dotfiles="cd ~/.dotfiles"
 alias gs="git status"
 alias lg='lazygit'
 alias wezterm='flatpak run org.wezfurlong.wezterm'
-alias code='flatpak run com.visualstudio.code'
 
 function proj() {
   cd "$(find ~/dev -type d -name .git -exec dirname {} \; 2>/dev/null  | (sleep 0.5; fzf --preview 'ls -la {}'))"

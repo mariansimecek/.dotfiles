@@ -1,18 +1,29 @@
 return {
     { "nvim-lua/plenary.nvim", lazy = true },
-    {
-        "nyoom-engineering/oxocarbon.nvim",
-        config = function()
-            vim.cmd.colorscheme("oxocarbon")
-        end,
-    },
+    -- {
+    --     "nyoom-engineering/oxocarbon.nvim",
+    --     config = function()
+    --         vim.cmd.colorscheme("oxocarbon")
+    --     end,
+    -- },
     -- {
     --     "felipeagc/fleet-theme-nvim",
     --     config = function()
     --         vim.cmd("colorscheme fleet")
     --     end,
     -- },
+    {
+        "projekt0n/github-nvim-theme",
+        config = function()
+            require("github-theme").setup({
+                options = {
+                    transparent = true,
+                },
+            })
 
+            vim.cmd("colorscheme github_dark")
+        end,
+    },
     -- Git plugins
     "tpope/vim-fugitive",
     {
@@ -45,9 +56,7 @@ return {
     },
     {
         "echasnovski/mini.move",
-        config = function()
-            require("mini.move").setup()
-        end,
+        config = {},
     },
     {
         "windwp/nvim-spectre",
@@ -63,41 +72,12 @@ return {
     },
     {
         "brenoprata10/nvim-highlight-colors",
-        config = function()
-            require("nvim-highlight-colors").setup({
-                render = "background", -- or 'foreground' or 'first_column'
-                enable_named_colors = true,
-                enable_tailwind = true,
-            })
-        end,
+        config = {
+            render = "background", -- or 'foreground' or 'first_column'
+            enable_named_colors = true,
+            enable_tailwind = true,
+        },
     },
-    -- {
-    --     "otavioschwanck/cool-substitute.nvim",
-    --     config = function()
-    --         require("cool-substitute").setup({
-    --             setup_keybindings = true,
-    --             mappings = {
-    --                 start = "gm", -- Mark word / region
-    --                 start_and_edit = "gM", -- Mark word / region and also edit
-    --                 start_and_edit_word = "g!M", -- Mark word / region and also edit.  Edit only full word.
-    --                 start_word = "g!m", -- Mark word / region. Edit only full word
-    --                 apply_substitute_and_next = "M", -- Start substitution / Go to next substitution
-    --                 apply_substitute_and_prev = "<C-b>", -- same as M but backwards
-    --                 apply_substitute_all = "ga", -- Substitute all
-    --                 force_terminate_substitute = "g!!", -- Terminate macro (if some bug happens)
-    --                 terminate_substitute = "<esc>", -- Terminate macro
-    --                 skip_substitute = "n", -- Skip this occurrence
-    --                 goto_next = "<C-j>", -- Go to next occurence
-    --                 goto_previous = "<C-k>", -- Go to previous occurrence
-    --             },
-    --             -- reg_char = 'o', -- letter to save macro (Dont use number or uppercase here)
-    --             -- mark_char = 't', -- mark the position at start of macro
-    --             -- writing_substitution_color = "#ECBE7B", -- for status line
-    --             -- applying_substitution_color = "#98be65", -- for status line
-    --             -- edit_word_when_starting_with_substitute_key = true -- (press M to mark and
-    --         })
-    --     end,
-    -- },
     {
         "smoka7/multicursors.nvim",
         event = "VeryLazy",
@@ -127,7 +107,6 @@ return {
             history = true,
             delete_check_events = "TextChanged",
         },
-        -- stylua: ignore
     },
 
     {
@@ -355,18 +334,12 @@ return {
 
     --lsp
     {
-        "neovim/nvim-lspconfig",
+        "VonHeikemen/lsp-zero.nvim",
+        branch = "v3.x",
         dependencies = {
-            {
-                "j-hui/fidget.nvim",
-                tag = "legacy",
-                event = "LspAttach",
-                opts = {
-                    text = { spinner = "dots" },
-                },
-            },
-
-            { "folke/neodev.nvim", config = true },
+            "neovim/nvim-lspconfig",
+            "williamboman/mason.nvim",
+            "williamboman/mason-lspconfig.nvim",
             {
                 "pmizio/typescript-tools.nvim",
                 opts = {
@@ -405,22 +378,43 @@ return {
                     end,
                 },
             },
-            "williamboman/mason-lspconfig.nvim",
-            "hrsh7th/cmp-nvim-lsp",
-            "Hoffs/omnisharp-extended-lsp.nvim",
-            {
-                "williamboman/mason.nvim",
-                cmd = "Mason",
-                opts = {
-                    ensure_installed = {
-                        "stylua",
-                        "shellcheck",
-                    },
-                },
-            },
         },
+        config = function()
+            local lsp_zero = require("lsp-zero")
+            lsp_zero.extend_lspconfig()
+
+            lsp_zero.on_attach(function(client, bufnr)
+                -- see :help lsp-zero-keybindings
+                -- to learn the available actions
+                lsp_zero.default_keymaps({ buffer = bufnr })
+            end)
+
+            require("mason").setup({})
+            require("mason-lspconfig").setup({
+                ensure_installed = {},
+                handlers = {
+                    lsp_zero.default_setup,
+                },
+            })
+            require("lspconfig").tsserver.setup({
+                on_init = function(client)
+                    client.server_capabilities.documentFormattingProvider = false
+                    client.server_capabilities.documentFormattingRangeProvider = false
+                end,
+            })
+        end,
+    },
+    {
+        "j-hui/fidget.nvim",
+        tag = "legacy",
+        event = "LspAttach",
+        text = { spinner = "dots" },
     },
 
+    { "folke/neodev.nvim", config = true },
+    "hrsh7th/cmp-nvim-lsp",
+
+    -- Formatting
     {
         "stevearc/conform.nvim",
         event = { "BufReadPre", "BufNewFile" },
@@ -452,12 +446,12 @@ return {
             vim.keymap.set({ "n", "v" }, "<leader>m", function()
                 conform.format({
                     lsp_fallback = true,
-                    async = false,
-                    timeout_ms = 1000,
+                    async = true,
                 })
             end, { desc = "Format file or range (in visual mode)" })
         end,
     },
+    -- Linting
     {
         "mfussenegger/nvim-lint",
         event = {
@@ -542,6 +536,7 @@ return {
     },
     {
         "nvim-tree/nvim-tree.lua",
+        commit = "914a6868cb7e5318ed0380f6fe2a44d11c01e45d",
         dependencies = {
             {
                 "nvim-tree/nvim-web-devicons",
@@ -618,7 +613,6 @@ return {
         cmd = "Telescope",
         config = function()
             local actions = require("telescope.actions")
-
             require("telescope").setup({
                 defaults = {
                     vimgrep_arguments = {
@@ -789,6 +783,7 @@ return {
     {
         "00sapo/visual.nvim",
         event = "VeryLazy", -- this is for making sure our keymaps are applied after the others: we call the previous mapppings, but other plugins/configs usually not!
+        -- opts = {},
     },
     {
         "folke/which-key.nvim",
