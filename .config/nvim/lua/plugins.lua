@@ -41,15 +41,15 @@ return {
         config = function()
             require("mini.surround").setup({
                 mappings = {
-                    add = "ms", -- Add surrounding in Normal and Visual modes
-                    delete = "md", -- Delete surrounding
-                    find = "mf", -- Find surrounding (to the right)
-                    replace = "mr", -- Replace surrounding
-                    find_left = "", -- Find surrounding (to the left)
-                    highlight = "", -- Highlight surrounding
+                    add = "ms",          -- Add surrounding in Normal and Visual modes
+                    delete = "md",       -- Delete surrounding
+                    find = "mf",         -- Find surrounding (to the right)
+                    replace = "mr",      -- Replace surrounding
+                    find_left = "",      -- Find surrounding (to the left)
+                    highlight = "",      -- Highlight surrounding
                     update_n_lines = "", -- Update `n_lines`
-                    suffix_last = "l", -- Suffix to search with "prev" method
-                    suffix_next = "n", -- Suffix to search with "next" method
+                    suffix_last = "l",   -- Suffix to search with "prev" method
+                    suffix_next = "n",   -- Suffix to search with "next" method
                 },
             })
         end,
@@ -114,9 +114,9 @@ return {
         version = false, -- last release is way too old
         event = "InsertEnter",
         dependencies = {
-            "hrsh7th/cmp-nvim-lsp", -- nvim-cmp source for neovim's built-in LSP
-            "hrsh7th/cmp-buffer", -- nvim-cmp source for buffer words
-            "hrsh7th/cmp-path", -- source for file system paths
+            "hrsh7th/cmp-nvim-lsp",     -- nvim-cmp source for neovim's built-in LSP
+            "hrsh7th/cmp-buffer",       -- nvim-cmp source for buffer words
+            "hrsh7th/cmp-path",         -- source for file system paths
             "saadparwaiz1/cmp_luasnip", -- for autocompletion
             "rambhosale/cmp-bootstrap.nvim",
             "onsails/lspkind-nvim",
@@ -166,7 +166,7 @@ return {
                 formatting = {
                     format = lspkind.cmp_format({
                         mode = "text_symbol", -- show only symbol annotations
-                        maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+                        maxwidth = 50,        -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
                         -- The function below will be called before any actual modifications from lspkind
                         -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
                         before = function(entry, vim_item)
@@ -295,8 +295,8 @@ return {
                     },
                 },
                 signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
-                numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
-                linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
+                numhl = false,     -- Toggle with `:Gitsigns toggle_numhl`
+                linehl = false,    -- Toggle with `:Gitsigns toggle_linehl`
                 word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
                 watch_gitdir = {
                     interval = 1000,
@@ -340,44 +340,9 @@ return {
             "neovim/nvim-lspconfig",
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
-            {
-                "pmizio/typescript-tools.nvim",
-                opts = {
-                    expose_as_code_action = "all",
-                    on_attach = function()
-                        vim.keymap.set(
-                            "n",
-                            "<leader>rf",
-                            ":TypecriptRenameFile<CR>",
-                            { desc = "Typescript [r]ename [f]ile" }
-                        )
-                        vim.keymap.set(
-                            "n",
-                            "<leader>oi",
-                            ":TSToolsOrganizeImports<CR>",
-                            { desc = "Typescript [o]rganize [i]mports" }
-                        )
-                        vim.keymap.set(
-                            "n",
-                            "<leader>ru",
-                            ":TSToolsRemoveUnused<CR>",
-                            { desc = "Typescript [r]emove [u]nused" }
-                        )
-                        vim.keymap.set(
-                            "n",
-                            "<leader>rui",
-                            ":TSToolsRemoveUnusedImports<CR>",
-                            { desc = "Typescript [r]emove [u]nused [i]mports" }
-                        )
-                        vim.keymap.set(
-                            "n",
-                            "<leader>mi",
-                            ":TSToolsAddMissingImports<CR>",
-                            { desc = "Typsecript add [m]issing [i]mports" }
-                        )
-                    end,
-                },
-            },
+            "pmizio/typescript-tools.nvim",
+            "nvim-lua/plenary.nvim",
+            "neovim/nvim-lspconfig"
         },
         config = function()
             local lsp_zero = require("lsp-zero")
@@ -389,6 +354,42 @@ return {
                 lsp_zero.default_keymaps({ buffer = bufnr })
             end)
 
+            require("typescript-tools").setup { settings = {
+
+                expose_as_code_action = "all",
+                on_attach = function()
+                    vim.keymap.set(
+                        "n",
+                        "<leader>rf",
+                        ":TypecriptRenameFile<CR>",
+                        { desc = "Typescript [r]ename [f]ile" }
+                    )
+                    vim.keymap.set(
+                        "n",
+                        "<leader>oi",
+                        ":TSToolsOrganizeImports<CR>",
+                        { desc = "Typescript [o]rganize [i]mports" }
+                    )
+                    vim.keymap.set(
+                        "n",
+                        "<leader>ru",
+                        ":TSToolsRemoveUnused<CR>",
+                        { desc = "Typescript [r]emove [u]nused" }
+                    )
+                    vim.keymap.set(
+                        "n",
+                        "<leader>rui",
+                        ":TSToolsRemoveUnusedImports<CR>",
+                        { desc = "Typescript [r]emove [u]nused [i]mports" }
+                    )
+                    vim.keymap.set(
+                        "n",
+                        "<leader>mi",
+                        ":TSToolsAddMissingImports<CR>",
+                        { desc = "Typsecript add [m]issing [i]mports" }
+                    )
+                end,
+            } }
             require("mason").setup({})
             require("mason-lspconfig").setup({
                 ensure_installed = {},
@@ -405,7 +406,7 @@ return {
         text = { spinner = "dots" },
     },
 
-    { "folke/neodev.nvim", config = true },
+    { "folke/neodev.nvim",     config = true },
     "hrsh7th/cmp-nvim-lsp",
 
     -- Formatting
@@ -495,7 +496,7 @@ return {
                         {
                             "filename",
                             file_status = true, -- displays file status (readonly status, modified status)
-                            path = 0, -- 0 = just filename, 1 = relative path, 2 = absolute path
+                            path = 0,           -- 0 = just filename, 1 = relative path, 2 = absolute path
                         },
                     },
                     lualine_c = { "branch" },
@@ -516,7 +517,7 @@ return {
                         {
                             "filename",
                             file_status = true, -- displays file status (readonly status, modified status)
-                            path = 1, -- 0 = just filename, 1 = relative path, 2 = absolute path
+                            path = 1,           -- 0 = just filename, 1 = relative path, 2 = absolute path
                         },
                     },
                     lualine_x = { "location" },
