@@ -2,7 +2,7 @@ return {
 
   {
     "nvim-tree/nvim-tree.lua",
-    commit = "914a6868cb7e5318ed0380f6fe2a44d11c01e45d",
+    -- commit = "914a6868cb7e5318ed0380f6fe2a44d11c01e45d",
     dependencies = {
       {
         "nvim-tree/nvim-web-devicons",

@@ -1,6 +1,5 @@
 return {
   -- "olimorris/onedarkpro.nvim",
-  "felipeagc/fleet-theme-nvim",
   {
     "projekt0n/github-nvim-theme",
     config = function()
@@ -11,7 +10,6 @@ return {
       })
     end,
   },
-
   {
     "LazyVim/LazyVim",
     opts = {
