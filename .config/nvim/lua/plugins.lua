@@ -14,17 +14,23 @@ return {
     -- },
     --
     {
-        "projekt0n/github-nvim-theme",
+        "ishan9299/modus-theme-vim",
         config = function()
-            require("github-theme").setup({
-                options = {
-                    transparent = true,
-                },
-            })
-
-            vim.cmd("colorscheme github_dark")
+            vim.cmd("colorscheme modus-vivendi")
         end,
     },
+    -- {
+    --     "projekt0n/github-nvim-theme",
+    --     config = function()
+    --         require("github-theme").setup({
+    --             options = {
+    --                 transparent = true,
+    --             },
+    --         })
+    --
+    --         vim.cmd("colorscheme github_dark")
+    --     end,
+    -- },
     -- Git plugins
     "tpope/vim-fugitive",
     {
