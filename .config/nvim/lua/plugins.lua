@@ -12,6 +12,7 @@ return {
     --         vim.cmd("colorscheme fleet")
     --     end,
     -- },
+    --
     {
         "projekt0n/github-nvim-theme",
         config = function()
@@ -357,7 +358,7 @@ return {
 
             require("typescript-tools").setup({
                 settings = {
-                    expose_as_code_action = "all",
+                    expose_as_code_action = "add_missing_imports",
                 },
                 on_attach = function()
                     vim.keymap.set(
@@ -433,10 +434,11 @@ return {
                     graphql = { "prettier" },
                     lua = { "stylua" },
                     python = { "isort", "black" },
+                    csharp = { "csharpier" },
                 },
                 format_on_save = {
+                    timeout_ms = 500,
                     lsp_fallback = true,
-                    async = true,
                 },
             })
 
@@ -716,10 +718,6 @@ return {
                 },
                 autotag = {
                     enable = true,
-                },
-                context_commentstring = {
-                    enable = true,
-                    enable_autocmd = false,
                 },
                 incremental_selection = {
                     enable = true,

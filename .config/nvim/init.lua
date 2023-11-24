@@ -162,6 +162,7 @@ vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "LSP show [g]o [r]efe
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "LSP show [g]o [d]efinition" })
 vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "LSP [g]o to [D]eclaration" })
 vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { desc = "LSP [g]o to [i]mplementation" })
+vim.keymap.set("n", "gy", vim.lsp.buf.type_definition, { desc = "LSP [g]o to type definition" })
 vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, { desc = "Show [c]ode [a]ction" })
 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "LSP [r]e[n]ame" })
 vim.keymap.set("n", "gtd", vim.lsp.buf.type_definition, { desc = "Type [D]efinition" })
