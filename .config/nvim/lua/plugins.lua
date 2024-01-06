@@ -348,7 +348,7 @@ return {
             "neovim/nvim-lspconfig",
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
-            "pmizio/typescript-tools.nvim",
+            -- "pmizio/typescript-tools.nvim",
             "nvim-lua/plenary.nvim",
             "neovim/nvim-lspconfig",
         },
@@ -362,43 +362,43 @@ return {
                 lsp_zero.default_keymaps({ buffer = bufnr })
             end)
 
-            require("typescript-tools").setup({
-                settings = {
-                    expose_as_code_action = "add_missing_imports",
-                },
-                on_attach = function()
-                    vim.keymap.set(
-                        "n",
-                        "<leader>rf",
-                        ":TypecriptRenameFile<CR>",
-                        { desc = "Typescript [r]ename [f]ile" }
-                    )
-                    vim.keymap.set(
-                        "n",
-                        "<leader>oi",
-                        ":TSToolsOrganizeImports<CR>",
-                        { desc = "Typescript [o]rganize [i]mports" }
-                    )
-                    vim.keymap.set(
-                        "n",
-                        "<leader>ru",
-                        ":TSToolsRemoveUnused<CR>",
-                        { desc = "Typescript [r]emove [u]nused" }
-                    )
-                    vim.keymap.set(
-                        "n",
-                        "<leader>rui",
-                        ":TSToolsRemoveUnusedImports<CR>",
-                        { desc = "Typescript [r]emove [u]nused [i]mports" }
-                    )
-                    vim.keymap.set(
-                        "n",
-                        "<leader>mi",
-                        ":TSToolsAddMissingImports<CR>",
-                        { desc = "Typsecript add [m]issing [i]mports" }
-                    )
-                end,
-            })
+            -- require("typescript-tools").setup({
+            --     settings = {
+            --         expose_as_code_action = "add_missing_imports",
+            --     },
+            --     on_attach = function()
+            --         vim.keymap.set(
+            --             "n",
+            --             "<leader>rf",
+            --             ":TypecriptRenameFile<CR>",
+            --             { desc = "Typescript [r]ename [f]ile" }
+            --         )
+            --         vim.keymap.set(
+            --             "n",
+            --             "<leader>oi",
+            --             ":TSToolsOrganizeImports<CR>",
+            --             { desc = "Typescript [o]rganize [i]mports" }
+            --         )
+            --         vim.keymap.set(
+            --             "n",
+            --             "<leader>ru",
+            --             ":TSToolsRemoveUnused<CR>",
+            --             { desc = "Typescript [r]emove [u]nused" }
+            --         )
+            --         vim.keymap.set(
+            --             "n",
+            --             "<leader>rui",
+            --             ":TSToolsRemoveUnusedImports<CR>",
+            --             { desc = "Typescript [r]emove [u]nused [i]mports" }
+            --         )
+            --         vim.keymap.set(
+            --             "n",
+            --             "<leader>mi",
+            --             ":TSToolsAddMissingImports<CR>",
+            --             { desc = "Typsecript add [m]issing [i]mports" }
+            --         )
+            --     end,
+            -- })
             require("mason").setup({})
             require("mason-lspconfig").setup({
                 ensure_installed = {},
@@ -441,10 +441,6 @@ return {
                     lua = { "stylua" },
                     python = { "isort", "black" },
                     csharp = { "csharpier" },
-                },
-                format_on_save = {
-                    timeout_ms = 500,
-                    lsp_fallback = true,
                 },
             })
 
