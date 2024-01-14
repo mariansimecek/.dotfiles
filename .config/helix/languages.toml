@@ -92,10 +92,6 @@
  # args = ["-config", "/Users/ali/.config/helix/snippets.json"]
 
 
- [[language]]
- name = "typescript"
- code-actions-on-save = ["source.sortImports.ts"]
-
  # language-servers = [  "typescript-language-server", ]
  # formatter = { command = 'npx', args = ["prettier", "--parser", "typescript"] }
  # indent = { tab-width = 4, unit = "\t" }
