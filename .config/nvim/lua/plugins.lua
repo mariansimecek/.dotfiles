@@ -13,10 +13,16 @@ return {
     --     end,
     -- },
     --
+    -- {
+    --     "ishan9299/modus-theme-vim",
+    --     config = function()
+    --         vim.cmd("colorscheme modus-vivendi")
+    --     end,
+    -- },
     {
-        "ishan9299/modus-theme-vim",
+        "blazkowolf/gruber-darker.nvim",
         config = function()
-            vim.cmd("colorscheme modus-vivendi")
+            vim.cmd("colorscheme gruber-darker")
         end,
     },
     -- {
@@ -106,14 +112,15 @@ return {
         "L3MON4D3/LuaSnip",
         dependencies = {
             "rafamadriz/friendly-snippets",
-            config = function()
-                require("luasnip.loaders.from_vscode").lazy_load()
-            end,
         },
-        opts = {
-            history = true,
-            delete_check_events = "TextChanged",
-        },
+        config = function()
+            require("luasnip.loaders.from_vscode").lazy_load()
+            require("luasnip").config.setup({
+                history = true,
+                delete_check_events = "TextChanged",
+            })
+            require("luasnip").filetype_extend("typescript", { "angular" })
+        end,
     },
 
     {
