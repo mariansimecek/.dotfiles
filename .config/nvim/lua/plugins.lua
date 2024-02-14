@@ -1,17 +1,18 @@
 return {
     { "nvim-lua/plenary.nvim", lazy = true },
+    async = true,
     -- {
     --     "nyoom-engineering/oxocarbon.nvim",
     --     config = function()
     --         vim.cmd.colorscheme("oxocarbon")
     --     end,
     -- },
-    -- {
-    --     "felipeagc/fleet-theme-nvim",
-    --     config = function()
-    --         vim.cmd("colorscheme fleet")
-    --     end,
-    -- },
+    {
+        "felipeagc/fleet-theme-nvim",
+        config = function()
+            vim.cmd("colorscheme fleet")
+        end,
+    },
     --
     -- {
     --     "ishan9299/modus-theme-vim",
@@ -19,12 +20,13 @@ return {
     --         vim.cmd("colorscheme modus-vivendi")
     --     end,
     -- },
-    {
-        "blazkowolf/gruber-darker.nvim",
-        config = function()
-            vim.cmd("colorscheme gruber-darker")
-        end,
-    },
+    -- {
+    --     "blazkowolf/gruber-darker.nvim",
+    --     config = function()
+    --         vim.cmd("colorscheme gruber-darker")
+    --     end,
+    -- },
+
     -- {
     --     "projekt0n/github-nvim-theme",
     --     config = function()
@@ -122,7 +124,15 @@ return {
             require("luasnip").filetype_extend("typescript", { "angular" })
         end,
     },
-
+    {
+        "Exafunction/codeium.vim",
+        event = "BufEnter",
+        config = function()
+            vim.keymap.set("i", "<C-x>", function()
+                return vim.fn["codeium#Accept"]()
+            end, { expr = true, silent = true })
+        end,
+    },
     {
         "hrsh7th/nvim-cmp",
         version = false, -- last release is way too old
@@ -134,11 +144,12 @@ return {
             "saadparwaiz1/cmp_luasnip", -- for autocompletion
             "rambhosale/cmp-bootstrap.nvim",
             "onsails/lspkind-nvim",
-            "zbirenbaum/copilot.lua",
+            -- "zbirenbaum/copilot.lua",
+            -- "Exafunction/codeium.vim"
         },
 
         config = function()
-            vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
+            -- vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
             local kind_icons = {
                 Text = "",
                 Method = "",
@@ -248,7 +259,8 @@ return {
                 },
                 sources = {
                     { name = "nvim_lsp" },
-                    { name = "copilot" },
+                    -- { name = "copilot" },
+                    -- { name = "codeium" },
                     -- { name = 'cmp_bootstrap' },
                     { name = "luasnip" },
                     { name = "nvim_lua" },
@@ -258,24 +270,24 @@ return {
             })
         end,
     },
-    {
-        "zbirenbaum/copilot.lua",
-        event = "VimEnter",
-        config = function()
-            vim.defer_fn(function()
-                require("copilot").setup()
-            end, 100)
-        end,
-        dependencies = {
-            "onsails/lspkind-nvim",
-            {
-                "zbirenbaum/copilot-cmp",
-                config = function()
-                    require("copilot_cmp").setup()
-                end,
-            },
-        },
-    },
+    -- {
+    --     "zbirenbaum/copilot.lua",
+    --     event = "VimEnter",
+    --     config = function()
+    --         vim.defer_fn(function()
+    --             require("copilot").setup()
+    --         end, 100)
+    --     end,
+    --     dependencies = {
+    --         "onsails/lspkind-nvim",
+    --         {
+    --             "zbirenbaum/copilot-cmp",
+    --             config = function()
+    --                 require("copilot_cmp").setup()
+    --             end,
+    --         },
+    --     },
+    -- },
     -- Gitsigns
     --
     {
