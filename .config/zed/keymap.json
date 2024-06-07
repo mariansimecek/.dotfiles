@@ -2,7 +2,8 @@
   {
     "context": "Editor || Workspace",
     "bindings": {
-      "ctrl-shift-e": "workspace::ToggleLeftDock"
+      "ctrl-shift-e": "workspace::ToggleLeftDock",
+      "ctrl-`": "workspace::ToggleBottomDock"
     }
   },
   {
