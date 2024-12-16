@@ -1,0 +1,68 @@
+{
+  "$schema": "https://zed.dev/schema/themes/v0.2.0.json",
+  "name": "Halogen",
+  "author": "Marian Simecek",
+  "themes": [
+    {
+      "name": "Halogen",
+      "appearance": "dark",
+      "style": {
+        "background": "#181819FB",
+        "panel.background": "#181819FB",
+        "editor.background": "#181819FB",
+        "editor.gutter.background": "#181819FB",
+        "hint": "#87919DFF",
+        "error": "#FF0000FF",
+        "warning": "#F8AD34FF",
+        "text": "#BFC9DBFF",
+        "text.muted": "#87919DFF",
+        "editor.document_highlight.bracket_background": "#BFC9DB38",
+        "modified": "#F8AD34FF",
+        "deleted": "#772222FF",
+        "created": "#227722FF",
+        "players": [
+          {
+            "cursor": "#fff",
+            "background": "#f00",
+            "selection": "#BFC9DB38"
+          }
+        ],
+        "syntax": {
+          "comment": {
+            "color": "#536371FF"
+          },
+          "type": {
+            "color": "#6e8eb8FF"
+          },
+          "function": {
+            "color": "#6e8eb8FF"
+          },
+          "punctuation": {
+            "color": "#BFC9DBFF"
+          },
+          "text.literal": {
+            "color": "#D4BC7DFF"
+          },
+          "keyword": {
+            "color": "#3aa982FF"
+          },
+          "number": {
+            "color": "#D699B5FF"
+          },
+          "macro": {
+            "color": "#E0AD82FF"
+          },
+          "enum": {
+            "color": "#BFC9DBFF"
+          },
+          "string": {
+            "color": "#D4BC7DFF"
+          },
+          "boolean": {
+            "color": "#3aa982FF"
+          }
+        }
+      }
+    }
+  ]
+}
