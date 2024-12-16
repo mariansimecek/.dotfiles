@@ -7,16 +7,34 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
-  "theme": "Fleet Dark",
-  // "buffer_font_weight": 600,
-  // "ui_font_weight": 600,
-  "terminal": {
-    "font_weight": 600
+  "assistant": {
+    "default_model": {
+      "provider": "google",
+      "model": "gemini-1.5-flash"
+    },
+    "version": "2"
   },
+  "chat_panel": {
+    "dock": "right"
+  },
+  "gutter": {
+    "folds": false
+  },
+  // "show_inline_completions": true,
+  "theme": "Halogen",
+  "experimental.theme_overrides": {
+    "background": "#222"
+  },
+  // "ui_font_family": "Liberation Mono",
+  // "buffer_font_family": "JetBrains Mono",
+  // "buffer_font_weight": 200,
+  // "ui_font_weight": 600,
+  // "terminal": {
+  //   "font_weight": 600
+  // },
   "cursor_blink": false,
   "features": {
-    "copilot": false,
-    "inline_completion_provider": "none"
+    // "inline_completion_provider": "supermaven"
   },
   "collaboration_panel": {
     "dock": "right"
@@ -29,5 +47,6 @@
     "breadcrumbs": false,
     "quick_actions": false
   },
+  "use_autoclose": false,
   "format_on_save": "off"
 }
