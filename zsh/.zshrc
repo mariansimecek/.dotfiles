@@ -108,7 +108,7 @@ source $ZSH/oh-my-zsh.sh
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-# -e   
+# -e
 alias luamake=/luamake
 
 # BUN
@@ -130,6 +130,7 @@ export DOTNET_ROOT=$HOME/.dotnet
 export PATH=$PATH:$DOTNET_ROOT
 export PATH=$PATH:~/.local/share/OmniSharp
 export PATH=$PATH:~/.local/share/netcoredbg
+export PATH=$HOME/dev/Odin/:$PATH
 
 # Aliases
 alias vim=nvim
