@@ -7,12 +7,25 @@ return {
     --         vim.cmd.colorscheme("oxocarbon")
     --     end,
     -- },
+    -- {}
+    -- {
+    --     "Skardyy/makurai-nvim",
+    --     config = function()
+    --         vim.cmd("colorscheme makurai")
+    --     end,
+    -- },
     {
-        "felipeagc/fleet-theme-nvim",
+        "slugbyte/lackluster.nvim",
         config = function()
-            vim.cmd("colorscheme fleet")
+            vim.cmd.colorscheme("lackluster")
         end,
     },
+    -- {
+    --     "felipeagc/fleet-theme-nvim",
+    --     config = function()
+    --         vim.cmd("colorscheme fleet")
+    --     end,
+    -- },
     --
     -- {
     --     "ishan9299/modus-theme-vim",

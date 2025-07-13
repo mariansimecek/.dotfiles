@@ -120,6 +120,7 @@ export PATH=$PATH:~/.scripts
 export PATH=$PATH:/opt/zig
 export PATH=$PATH:~/.local/bin
 export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:/usr/local/bin/odin
 export PATH=$PATH:$HOME/go/bin
 export PATH=$PATH:$HOME/.cargo/bin
 export PATH=$PATH:/home/marian-simecek/.local/share/bob/nvim-bin
@@ -128,7 +129,8 @@ export PATH=$PATH:/home/marian-simecek/.dotnet/
 export PATH=$PATH:$HOME/.dotnet/tools
 export DOTNET_ROOT=$HOME/.dotnet
 export PATH=$PATH:$DOTNET_ROOT
-export PATH=$PATH:~/.local/share/OmniSharp
+# export PATH=$PATH:~/.local/bin/omnisharp-linux-x64
+export PATH=$PATH:~/.local/bin/focus
 export PATH=$PATH:~/.local/share/netcoredbg
 export PATH=$HOME/dev/Odin/:$PATH
 
@@ -175,3 +177,5 @@ eval "$(zoxide init zsh)"
 # [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
 
 # source /home/marian-simecek/.config/broot/launcher/bash/br
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
