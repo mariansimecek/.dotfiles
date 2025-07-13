@@ -7,18 +7,24 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
-  "buffer_font_family": "Geist Mono",
+  "debugger": {
+    "dock": "left"
+  },
   "show_edit_predictions": true,
   "edit_predictions": {
     "mode": "subtle"
   },
-  "assistant": {
+  "agent": {
+    "always_allow_tool_actions": true,
+    "inline_assistant_model": {
+      "provider": "google",
+      "model": "gemini-2.0-flash"
+    },
     "default_profile": "ask",
     "default_model": {
-      "provider": "zed.dev",
-      "model": "claude-3-7-sonnet-latest"
-    },
-    "version": "2"
+      "provider": "google",
+      "model": "gemini-2.0-flash"
+    }
   },
   "chat_panel": {
     "dock": "right"
@@ -26,7 +32,7 @@
   "gutter": {
     "folds": false
   },
-  "theme": "Clerk Dark",
+  "theme": "Oxocarbon Dark (IBM Carbon)",
   "cursor_blink": false,
   "features": {
     "edit_prediction_provider": "zed"
@@ -38,25 +44,37 @@
     // "show": false
   },
   "vim_mode": true,
+
   "toolbar": {
     "breadcrumbs": false,
     "quick_actions": false
   },
   "use_autoclose": false,
   "format_on_save": "off",
-  "languages": {
-    "TypeScript": {
-      "language_servers": ["angular", "..."]
-    },
-    "HTML": {
-      "language_servers": ["angular", "..."]
-    }
-  },
+  // "languages": {
+  //   "TypeScript": {
+  //     "language_servers": ["angular", "..."]
+  //   },
+  //   "HTML": {
+  //     "language_servers": ["angular", "..."]
+  //   }
+  // },
+  // "languages": {
+  //   "TypeScript": {
+  //     "language_servers": ["tsgo", "vtsls"]
+  //     "language_servers": ["tsgo"]
+  //   }
+  // },
   "lsp": {
     "angular": {
       "initialization_options": {
-        "angular_language_server_version": "19.2.2",
-        "typescript_version": "5.8.2"
+        "angular_language_server_version": "19.2.4",
+        "typescript_version": "5.8.3"
+      }
+    },
+    "biome": {
+      "settings": {
+        "require_config_file": true
       }
     }
   }

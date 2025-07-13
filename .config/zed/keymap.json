@@ -28,7 +28,7 @@
       "ctrl-k": "workspace::ActivatePaneUp",
       "ctrl-j": "workspace::ActivatePaneDown",
       "g ]": "editor::GoToDiagnostic",
-      "g [": "editor::GoToPrevDiagnostic",
+      "g [": "editor::GoToPreviousDiagnostic",
       "g a": "editor::ToggleCodeActions",
       "g i": "editor::GoToImplementation",
       "space r": "editor::Rename",
