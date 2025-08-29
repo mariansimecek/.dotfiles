@@ -1,5 +1,4 @@
 [
-
   {
     "context": "vim_mode == visual",
     "bindings": {
@@ -45,4 +44,9 @@
       "ctrl-j": "workspace::ActivatePaneDown"
     }
   },
+  {
+    "bindings": {
+      "ctrl-w o": "workspace::Open"
+    }
+  }
 ]

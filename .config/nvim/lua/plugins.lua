@@ -1,12 +1,12 @@
 return {
     { "nvim-lua/plenary.nvim", lazy = true },
     async = true,
-    -- {
-    --     "nyoom-engineering/oxocarbon.nvim",
-    --     config = function()
-    --         vim.cmd.colorscheme("oxocarbon")
-    --     end,
-    -- },
+    {
+        "nyoom-engineering/oxocarbon.nvim",
+        config = function()
+            vim.cmd.colorscheme("oxocarbon")
+        end,
+    },
     -- {}
     -- {
     --     "Skardyy/makurai-nvim",
@@ -14,12 +14,12 @@ return {
     --         vim.cmd("colorscheme makurai")
     --     end,
     -- },
-    {
-        "slugbyte/lackluster.nvim",
-        config = function()
-            vim.cmd.colorscheme("lackluster")
-        end,
-    },
+    -- {
+    --     "slugbyte/lackluster.nvim",
+    --     config = function()
+    --         vim.cmd.colorscheme("lackluster")
+    --     end,
+    -- },
     -- {
     --     "felipeagc/fleet-theme-nvim",
     --     config = function()

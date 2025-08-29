@@ -128,6 +128,7 @@ export PATH=$PATH:/home/marian-simecek/.deno/bin
 export PATH=$PATH:/home/marian-simecek/.dotnet/
 export PATH=$PATH:$HOME/.dotnet/tools
 export DOTNET_ROOT=$HOME/.dotnet
+# export PATH=$PATH:$HOME/.local/bin/omnisharp-linux-x64
 export PATH=$PATH:$DOTNET_ROOT
 # export PATH=$PATH:~/.local/bin/omnisharp-linux-x64
 export PATH=$PATH:~/.local/bin/focus

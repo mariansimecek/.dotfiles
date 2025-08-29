@@ -17,22 +17,23 @@
   "agent": {
     "always_allow_tool_actions": true,
     "inline_assistant_model": {
-      "provider": "google",
-      "model": "gemini-2.0-flash"
+      "provider": "copilot_chat",
+      "model": "gpt-4o"
     },
-    "default_profile": "ask",
+    "default_profile": "write",
     "default_model": {
       "provider": "google",
-      "model": "gemini-2.0-flash"
+      "model": "gemini-2.5-flash"
     }
   },
+  "project_panel": { "sticky_scroll": false },
   "chat_panel": {
     "dock": "right"
   },
   "gutter": {
     "folds": false
   },
-  "theme": "Oxocarbon Dark (IBM Carbon)",
+  "theme": "Clerk Dark",
   "cursor_blink": false,
   "features": {
     "edit_prediction_provider": "zed"
@@ -40,42 +41,11 @@
   "collaboration_panel": {
     "dock": "right"
   },
-  "tab_bar": {
-    // "show": false
-  },
   "vim_mode": true,
-
   "toolbar": {
     "breadcrumbs": false,
     "quick_actions": false
   },
   "use_autoclose": false,
-  "format_on_save": "off",
-  // "languages": {
-  //   "TypeScript": {
-  //     "language_servers": ["angular", "..."]
-  //   },
-  //   "HTML": {
-  //     "language_servers": ["angular", "..."]
-  //   }
-  // },
-  // "languages": {
-  //   "TypeScript": {
-  //     "language_servers": ["tsgo", "vtsls"]
-  //     "language_servers": ["tsgo"]
-  //   }
-  // },
-  "lsp": {
-    "angular": {
-      "initialization_options": {
-        "angular_language_server_version": "19.2.4",
-        "typescript_version": "5.8.3"
-      }
-    },
-    "biome": {
-      "settings": {
-        "require_config_file": true
-      }
-    }
-  }
+  "format_on_save": "off"
 }
