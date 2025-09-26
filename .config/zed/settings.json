@@ -33,7 +33,7 @@
   "gutter": {
     "folds": false
   },
-  "theme": "Clerk Dark",
+  "theme": "Fleet Dark",
   "cursor_blink": false,
   "features": {
     "edit_prediction_provider": "zed"
