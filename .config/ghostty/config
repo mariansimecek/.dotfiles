@@ -1,1 +1,2 @@
-theme = oxocarbon
+theme = dark:oxocarbon,light:base16-oxocarbon-light
+font-family = "JetBrains Mono"

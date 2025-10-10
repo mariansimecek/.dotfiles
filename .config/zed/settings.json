@@ -7,6 +7,7 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "confirm_quit": true,
   "debugger": {
     "dock": "left"
   },
@@ -15,25 +16,26 @@
     "mode": "subtle"
   },
   "agent": {
-    "always_allow_tool_actions": true,
+    "always_allow_tool_actions": false,
     "inline_assistant_model": {
-      "provider": "copilot_chat",
-      "model": "gpt-4o"
+      "provider": "google",
+      "model": "gemini-2.0-flash"
     },
     "default_profile": "write",
     "default_model": {
-      "provider": "google",
-      "model": "gemini-2.5-flash"
+      "provider": "zed.dev",
+      "model": "claude-sonnet-4"
     }
   },
+  "buffer_font_family": "JetBrains Mono",
   "project_panel": { "sticky_scroll": false },
-  "chat_panel": {
-    "dock": "right"
-  },
   "gutter": {
     "folds": false
   },
-  "theme": "Fleet Dark",
+  "theme": {
+    "light": "Fleet Light",
+    "dark": "Fleet Dark"
+  },
   "cursor_blink": false,
   "features": {
     "edit_prediction_provider": "zed"
@@ -47,5 +49,13 @@
     "quick_actions": false
   },
   "use_autoclose": false,
-  "format_on_save": "off"
+  "format_on_save": "off",
+  "lsp": {
+    "omnisharp": {
+
+      // "binary": {
+      //   "path": "csharp-language-server"
+      // }
+    }
+  }
 }

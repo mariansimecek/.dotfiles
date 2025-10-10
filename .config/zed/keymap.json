@@ -32,6 +32,10 @@
       "g i": "editor::GoToImplementation",
       "space r": "editor::Rename",
       "space w": "workspace::Save",
+      "space g": [
+        "task::Spawn",
+        { "task_name": "LazyGit", "reveal_target": "center" }
+      ],
       "g r": "editor::FindAllReferences"
     }
   },
@@ -47,6 +51,13 @@
   {
     "bindings": {
       "ctrl-w o": "workspace::Open"
+    }
+  },
+  {
+    "context": "Pane",
+    "bindings": {
+      "ctrl-shift-tab": "pane::ActivatePreviousItem",
+      "ctrl-tab": "pane::ActivateNextItem"
     }
   }
 ]
