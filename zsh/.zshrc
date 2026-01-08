@@ -127,7 +127,7 @@ export PATH=$PATH:/home/marian-simecek/.local/share/bob/nvim-bin
 export PATH=$PATH:/home/marian-simecek/.deno/bin
 export PATH=$PATH:/home/marian-simecek/.dotnet/
 export PATH=$PATH:$HOME/.dotnet/tools
-export DOTNET_ROOT=$HOME/.dotnet
+export DOTNET_ROOT=/usr/local/share/dotnet/
 # export PATH=$PATH:$HOME/.local/bin/omnisharp-linux-x64
 export PATH=$PATH:$DOTNET_ROOT
 # export PATH=$PATH:~/.local/bin/omnisharp-linux-x64
@@ -180,3 +180,4 @@ eval "$(zoxide init zsh)"
 # source /home/marian-simecek/.config/broot/launcher/bash/br
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH=/Users/mariansimecek_work/Downloads/omnisharp-osx-arm64-net6.0/:$PATH

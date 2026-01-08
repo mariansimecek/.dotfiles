@@ -9,53 +9,50 @@
 {
   "confirm_quit": true,
   "debugger": {
-    "dock": "left"
+    "dock": "left",
   },
   "show_edit_predictions": true,
   "edit_predictions": {
-    "mode": "subtle"
+    "mode": "subtle",
   },
   "agent": {
     "always_allow_tool_actions": false,
     "inline_assistant_model": {
       "provider": "google",
-      "model": "gemini-2.0-flash"
+      "model": "gemini-2.0-flash",
     },
     "default_profile": "write",
     "default_model": {
       "provider": "zed.dev",
-      "model": "claude-sonnet-4"
-    }
+      "model": "claude-sonnet-4",
+    },
   },
   "buffer_font_family": "JetBrains Mono",
   "project_panel": { "sticky_scroll": false },
   "gutter": {
-    "folds": false
+    "folds": false,
   },
   "theme": {
-    "light": "Fleet Light",
-    "dark": "Fleet Dark"
+    "light": "Simple theme light",
+    "dark": "Fleet Dark",
   },
   "cursor_blink": false,
   "features": {
-    "edit_prediction_provider": "zed"
+    "edit_prediction_provider": "zed",
   },
   "collaboration_panel": {
-    "dock": "right"
+    "dock": "right",
   },
+
   "vim_mode": true,
+  "which_key": {
+    "enabled": true,
+    "delay_ms": 1000,
+  },
   "toolbar": {
     "breadcrumbs": false,
-    "quick_actions": false
+    "quick_actions": false,
   },
   "use_autoclose": false,
   "format_on_save": "off",
-  "lsp": {
-    "omnisharp": {
-
-      // "binary": {
-      //   "path": "csharp-language-server"
-      // }
-    }
-  }
 }
