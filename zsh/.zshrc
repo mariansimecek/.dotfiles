@@ -181,3 +181,6 @@ eval "$(zoxide init zsh)"
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH=/Users/mariansimecek_work/Downloads/omnisharp-osx-arm64-net6.0/:$PATH
+
+# opencode
+export PATH=/Users/mariansimecek_work/.opencode/bin:$PATH

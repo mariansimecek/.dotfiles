@@ -7,6 +7,13 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "agent_servers": {
+    
+  },
+  "outline_panel": {
+    "dock": "right"
+  },
+  "use_system_window_tabs": true,
   "confirm_quit": true,
   "debugger": {
     "dock": "left",
@@ -23,8 +30,9 @@
     },
     "default_profile": "ask",
     "default_model": {
-      "provider": "google",
-      "model": "gemini-3-pro-preview",
+      "enable_thinking": false,
+      "provider": "openrouter",
+      "model": "openrouter/auto",
     },
   },
   "buffer_font_family": "JetBrains Mono",
@@ -40,6 +48,13 @@
   "cursor_blink": false,
   "collaboration_panel": {
     "dock": "right",
+  },
+  "lsp": {
+    "biome": {
+      "settings": {
+        "require_config_file": true,
+      },
+    },
   },
 
   "vim_mode": true,
